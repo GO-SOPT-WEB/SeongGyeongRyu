@@ -5,7 +5,7 @@
 }
 
 body {
-  background-color: darkgray;
+  background-color: #fee2c6;
 }
 
 .header {
@@ -13,21 +13,33 @@ body {
   justify-content: space-between;
   align-items: center;
   position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
 
   width: 100%;
-  height: 4rem;
-  padding: 2rem;
+  height: 10rem;
+  padding: 0 2rem;
 
   font-size: 3rem;
+  z-index: 2;
 
-  background-color: antiquewhite;
+  background-color: #fbdea2;
 }
 
 .header > img {
   width: 10%;
-  height: 80%;
+  height: 50%;
 
   cursor: pointer;
+}
+
+.header > img:hover + .header + .sidebar {
+  display: block;
+
+  width: 30%;
+  height: 100vh;
+  right: 0;
 }
 
 .nav {
@@ -36,18 +48,42 @@ body {
   justify-content: center;
   align-items: center;
 
-  width: 20rem;
-  height: 20rem;
-  gap: 0.3rem;
+  position: sticky;
+  top: 12rem;
+  left: 0;
+  right: 0;
 
-  background-color: aquamarine;
+  width: 80rem;
+  height: 30rem;
+  gap: 2rem;
+  margin-left: 2rem;
+
+  border-radius: 3rem;
+  background-color: #fcccd4;
+}
+
+.nav > * {
+  font-size: 2.5rem;
+}
+
+.nav > button {
+  width: 80%;
+  border-radius: 3rem;
+  border: none;
+
+  cursor: pointer;
+}
+
+.nav > button:hover {
+  background-color: blueviolet;
+  color: #fff;
 }
 
 .main {
   display: flex;
   gap: 2rem;
 
-  padding-top: 8rem;
+  padding-top: 2rem;
 }
 
 .menu {
@@ -66,10 +102,12 @@ body {
   width: 30rem;
   height: 30rem;
 
-  background-color: yellow;
+  background-color: #fb9da7;
   border-radius: 3rem;
 
   overflow: hidden;
+
+  cursor: pointer;
 }
 
 .menu-item > h1 {
@@ -77,9 +115,12 @@ body {
   margin-top: 1rem;
 }
 
-.menu-item > p {
+.menu-item > .menu-hashtag {
+  display: flex;
+
   font-size: 1.5rem;
   margin-top: 0.4rem;
+  gap: 0.1rem;
 }
 
 .menu-item > img {
@@ -88,4 +129,32 @@ body {
 
   width: 100%;
   height: 80%;
+}
+
+.menu-item > .menu-like {
+  width: 100%;
+  position: relative;
+}
+
+.like-before,
+.like-after {
+  position: absolute;
+  top: 2rem;
+  left: 2rem;
+}
+
+.menu-like > .like-after {
+  display: none;
+}
+
+.menu-like:hover > .like-before {
+  display: none;
+}
+
+.menu-like:hover > .like-after {
+  display: block;
+}
+
+.sidebar {
+  display: none;
 }
