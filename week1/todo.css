@@ -8,7 +8,7 @@
 
 body {
   display: grid;
-  grid-template-rows: 1fr 6.5fr 1.5fr;
+  grid-template-rows: 1fr 7.5fr 1.5fr;
 
   font-family: "Jua", sans-serif;
   background-color: rgb(253, 241, 187);
@@ -26,17 +26,43 @@ body {
 }
 
 .main {
+  width: 100%;
+  height: 100%;
+
   display: grid;
   grid-template-rows: 1fr 4fr;
   justify-items: center;
+  align-items: space-between;
 }
 
 .weekly {
   width: 80%;
   height: 100%;
 
-  background-color: #fff;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+
+  background-color: rgba(255, 204, 51, 0.7);
+  box-shadow: 5px 5px rgba(0, 0, 0, 0.2);
   border-radius: 25px;
+}
+
+.weekly > section {
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  row-gap: 20px;
+}
+
+.weekly > section > p {
+  display: grid;
+  justify-content: center;
+  align-content: center;
+}
+
+.weekly > section > img > text {
+  font-size: 20px;
+  font-weight: bold;
 }
 
 .todos {
@@ -49,6 +75,30 @@ body {
 
   background-color: olive;
   border-radius: 25px;
+}
+
+.todo-section {
+  display: grid;
+  row-gap: 10px;
+
+  width: 100%;
+  height: 100%;
+}
+
+.todo-section > .todo-tag {
+  display: grid;
+  justify-items: center;
+  align-items: center;
+
+  width: 85%;
+  height: 90%;
+
+  background-color: brown;
+  border-radius: 25px;
+}
+
+.todo-section > .todo-content {
+  margin-left: 30px;
 }
 
 .footer {
@@ -77,4 +127,8 @@ body {
 
   cursor: pointer;
   font-size: 22px;
+}
+
+.footer > button:hover {
+  background-color: rgb(205, 180, 235);
 }
