@@ -1,0 +1,80 @@
+@import "./reset.css";
+
+* {
+  max-width: 430px;
+  height: 100%;
+  font-family: "Jua", sans-serif;
+}
+
+body {
+  display: grid;
+  grid-template-rows: 1fr 6.5fr 1.5fr;
+
+  font-family: "Jua", sans-serif;
+  background-color: rgb(253, 241, 187);
+}
+
+.title {
+  display: grid;
+  justify-items: center;
+  align-items: center;
+
+  width: 100%;
+  color: rgb(183, 180, 200);
+  font-size: 45px;
+  text-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
+}
+
+.main {
+  display: grid;
+  grid-template-rows: 1fr 4fr;
+  justify-items: center;
+}
+
+.weekly {
+  width: 80%;
+  height: 100%;
+
+  background-color: #fff;
+  border-radius: 25px;
+}
+
+.todos {
+  width: 80%;
+  height: 90%;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+
+  background-color: olive;
+  border-radius: 25px;
+}
+
+.footer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+
+  justify-items: center;
+  align-items: center;
+
+  width: 100%;
+}
+
+.footer > button {
+  display: grid;
+  grid-template-rows: 1.5fr 1fr;
+  justify-items: center;
+  align-items: center;
+
+  width: 70%;
+  height: 120px;
+
+  border: none;
+  border-radius: 50px;
+  background-color: rgb(205, 226, 235);
+  box-shadow: 5px 5px rgba(0, 0, 0, 0.2);
+
+  cursor: pointer;
+  font-size: 22px;
+}
