@@ -1,11 +1,21 @@
+@import "./reset.css";
+
 * {
-  font-family: "Do Hyeon", sans-serif;
-  font-size: 10px;
+  box-sizing: border-box;
   margin: 0;
+  padding: 0;
 }
 
 body {
+  font-family: "Do Hyeon", sans-serif;
   background-color: #fee2c6;
+
+  display: flex;
+  flex-direction: column;
+}
+
+button {
+  font-family: inherit;
 }
 
 .header {
@@ -15,10 +25,9 @@ body {
   position: sticky;
   top: 0;
   left: 0;
-  right: 0;
 
-  width: 100%;
-  height: 10rem;
+  width: 100vw;
+  height: 100px;
   padding: 0 2rem;
 
   font-size: 3rem;
@@ -28,18 +37,58 @@ body {
 }
 
 .header > img {
-  width: 10%;
+  width: 8%;
   height: 50%;
 
   cursor: pointer;
 }
 
-.header > img:hover + .header + .sidebar {
-  display: block;
+.header__sidebar {
+  display: none;
+}
 
-  width: 30%;
+.header > img:hover + .header__sidebar {
+  display: flex;
+  flex-direction: column;
+
+  position: absolute;
+
+  width: 20vw;
   height: 100vh;
+  padding: 20px;
+
   right: 0;
+  top: 0;
+
+  font-size: 30px;
+
+  background-color: #fff;
+}
+
+.header__sidebar > h1 {
+  margin-bottom: 3rem;
+}
+
+.header__sidebar > div {
+  display: flex;
+  align-items: center;
+
+  width: 80%;
+  height: 5rem;
+
+  font-size: 25px;
+
+  background-color: transparent;
+  border: none;
+  outline: 1px;
+}
+
+.main {
+  display: grid;
+  grid-template-columns: 1fr 6fr;
+  column-gap: 2rem;
+
+  padding: 2rem;
 }
 
 .nav {
@@ -48,15 +97,11 @@ body {
   justify-content: center;
   align-items: center;
 
-  position: sticky;
-  top: 12rem;
-  left: 0;
-  right: 0;
+  height: 25rem;
+  gap: 1rem;
 
-  width: 80rem;
-  height: 30rem;
-  gap: 2rem;
-  margin-left: 2rem;
+  padding: 2rem;
+  width: 25rem;
 
   border-radius: 3rem;
   background-color: #fcccd4;
@@ -67,7 +112,8 @@ body {
 }
 
 .nav > button {
-  width: 80%;
+  width: 100%;
+  height: 7rem;
   border-radius: 3rem;
   border: none;
 
@@ -79,16 +125,10 @@ body {
   color: #fff;
 }
 
-.main {
-  display: flex;
-  gap: 2rem;
-
-  padding-top: 2rem;
-}
-
 .menu {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+
   gap: 1.5rem;
 }
 
@@ -98,9 +138,8 @@ body {
   align-items: center;
 
   position: relative;
-
-  width: 30rem;
-  height: 30rem;
+  width: 100%;
+  height: 25rem;
 
   background-color: #fb9da7;
   border-radius: 3rem;
@@ -110,7 +149,7 @@ body {
   cursor: pointer;
 }
 
-.menu-item > h1 {
+.menu-item > .menu-like > h1 {
   font-size: 2rem;
   margin-top: 1rem;
 }
@@ -118,8 +157,7 @@ body {
 .menu-item > .menu-hashtag {
   display: flex;
 
-  font-size: 1.5rem;
-  margin-top: 0.4rem;
+  font-size: 1rem;
   gap: 0.1rem;
 }
 
@@ -133,13 +171,16 @@ body {
 
 .menu-item > .menu-like {
   width: 100%;
+  height: 13%;
+  display: flex;
+  justify-content: center;
   position: relative;
 }
 
 .like-before,
 .like-after {
   position: absolute;
-  top: 2rem;
+  top: 1.5rem;
   left: 2rem;
 }
 
@@ -155,6 +196,72 @@ body {
   display: block;
 }
 
-.sidebar {
-  display: none;
+.menu-hashtag {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+/* 미디어 쿼리 */
+
+@media screen and (max-width: 1279px) {
+  .main {
+    display: grid;
+    grid-template-columns: 1fr 5fr;
+  }
+  .menu {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+
+    gap: 1.5rem;
+  }
+}
+
+@media screen and (max-width: 1199px) {
+  .main {
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+  }
+  .menu {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+
+    gap: 1.5rem;
+  }
+}
+
+@media screen and (max-width: 1023px) {
+  .main {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+  }
+  .menu {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 1.5rem;
+  }
+}
+
+@media screen and (max-width: 899px) {
+  .main {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+  }
+  .menu {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 1.5rem;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .main {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  .menu {
+    display: flex;
+    flex-direction: column;
+  }
 }
