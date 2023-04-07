@@ -1,5 +1,16 @@
 @import "./reset.css";
 
+:root {
+  --color-background: #fee2c6;
+  --color-header: #fbdea2;
+  --color-sidebar: #fff;
+  --color-sidebar-hover: #fb9da7;
+  --color-nav: #fcccd4;
+  --color-nav-hover: #8a2be2;
+  --color-menu: #fb9da7;
+  --color-hashtag: #fbdea2;
+}
+
 /* 아이템을 선택했을 때 좌우로 흔들리는 애니메이션 */
 @keyframes item-ani {
   25% {
@@ -24,7 +35,7 @@ body {
   display: flex;
   flex-direction: column;
 
-  background-color: #fee2c6;
+  background-color: var(--color-background);
   font-family: "Do Hyeon", sans-serif;
 }
 
@@ -40,7 +51,7 @@ body {
   height: 100px;
   padding: 0 2rem;
 
-  background-color: #fbdea2;
+  background-color: var(--color-header);
   font-size: 3rem;
   z-index: 2;
 }
@@ -67,7 +78,7 @@ body {
   height: 100vh;
   padding: 20px;
 
-  background-color: #fff;
+  background-color: var(--color-sidebar);
   font-size: 30px;
 
   cursor: pointer;
@@ -91,7 +102,7 @@ body {
 }
 
 .header__sidebar > div:hover {
-  color: #fb9da7;
+  color: var(--color-sidebar-hover);
 }
 
 .main {
@@ -113,7 +124,7 @@ body {
   gap: 1rem;
 
   border-radius: 3rem;
-  background-color: #fcccd4;
+  background-color: var(--color-nav);
 }
 
 .nav > * {
@@ -131,8 +142,8 @@ body {
 }
 
 .nav > button:hover {
-  background-color: blueviolet;
-  color: #fff;
+  background-color: var(--color-nav-hover);
+  color: var(--color-sidebar);
 }
 
 .menu {
@@ -152,7 +163,7 @@ body {
   width: 100%;
   height: 25rem;
 
-  background-color: #fb9da7;
+  background-color: var(--color-menu);
   border-radius: 3rem;
 
   overflow: hidden;
@@ -161,11 +172,6 @@ body {
 
 .menu-item:hover {
   animation: item-ani 0.8s linear 1;
-}
-
-.menu-item > .menu-like > h1 {
-  font-size: 1.5rem;
-  margin-top: 1rem;
 }
 
 .menu-item > .menu-hashtag {
@@ -211,6 +217,11 @@ body {
   display: block;
 }
 
+.menu-item > .menu-like > h1 {
+  font-size: 1.5rem;
+  margin-top: 1rem;
+}
+
 .menu-hashtag {
   display: flex;
   justify-content: center;
@@ -231,7 +242,7 @@ body {
   padding: 0.5rem;
 
   border-radius: 3rem;
-  background-color: #fbdea2;
+  background-color: var(--color-hashtag);
 }
 
 .menu-hashtag > p::before {
