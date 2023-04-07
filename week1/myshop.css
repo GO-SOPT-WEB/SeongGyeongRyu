@@ -7,11 +7,11 @@
 }
 
 body {
-  font-family: "Do Hyeon", sans-serif;
-  background-color: #fee2c6;
-
   display: flex;
   flex-direction: column;
+
+  font-family: "Do Hyeon", sans-serif;
+  background-color: #fee2c6;
 }
 
 button {
@@ -90,8 +90,8 @@ button {
 }
 
 .main {
-  display: grid;
-  grid-template-columns: 1fr 6fr;
+  display: flex;
+
   column-gap: 2rem;
 
   padding: 2rem;
@@ -103,11 +103,10 @@ button {
   justify-content: center;
   align-items: center;
 
-  height: 25rem;
-  gap: 1rem;
-
   padding: 2rem;
   width: 20rem;
+  height: 25rem;
+  gap: 1rem;
 
   border-radius: 3rem;
   background-color: #fcccd4;
@@ -132,6 +131,7 @@ button {
 }
 
 .menu {
+  width: calc(100% - 20rem);
   display: grid;
   grid-template-columns: repeat(6, 1fr);
 
@@ -234,11 +234,8 @@ button {
 /* 미디어 쿼리 */
 
 @media screen and (max-width: 1279px) {
-  .main {
-    display: grid;
-    grid-template-columns: 1fr 5fr;
-  }
   .menu {
+    width: calc(100% - 20rem);
     display: grid;
     grid-template-columns: repeat(5, 1fr);
 
@@ -247,11 +244,8 @@ button {
 }
 
 @media screen and (max-width: 1199px) {
-  .main {
-    display: grid;
-    grid-template-columns: 1fr 4fr;
-  }
   .menu {
+    width: calc(100% - 20rem);
     display: grid;
     grid-template-columns: repeat(4, 1fr);
 
@@ -260,11 +254,8 @@ button {
 }
 
 @media screen and (max-width: 1023px) {
-  .main {
-    display: grid;
-    grid-template-columns: 1fr 3fr;
-  }
   .menu {
+    width: calc(100% - 20rem);
     display: grid;
     grid-template-columns: repeat(3, 1fr);
 
@@ -273,11 +264,8 @@ button {
 }
 
 @media screen and (max-width: 899px) {
-  .main {
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-  }
   .menu {
+    width: calc(100% - 20rem);
     display: grid;
     grid-template-columns: repeat(2, 1fr);
 
@@ -285,12 +273,9 @@ button {
   }
 }
 
-@media screen and (max-width: 800px) {
-  .main {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-  }
+@media screen and (max-width: 750px) {
   .menu {
+    width: calc(100% - 20rem);
     display: flex;
     flex-direction: column;
   }
