@@ -1,5 +1,28 @@
 @import "./reset.css";
 
+@-webkit-keyframes item-ani {
+  25% {
+    transform: rotate(2deg) scale(1.01);
+  }
+  50% {
+    transform: rotate(0deg) scale(1);
+  }
+  75% {
+    transform: rotate(-2deg) scale(1.01);
+  }
+}
+@keyframes item-ani {
+  25% {
+    transform: rotate(2deg) scale(1.01);
+  }
+  50% {
+    transform: rotate(0deg) scale(1);
+  }
+  75% {
+    transform: rotate(-2deg) scale(1.01);
+  }
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -155,6 +178,11 @@ button {
   cursor: pointer;
 }
 
+.menu-item:hover {
+  -webkit-animation: item-ani 0.8s linear 1;
+  animation: item-ani 0.8s linear 1;
+}
+
 .menu-item > .menu-like > h1 {
   font-size: 1.5rem;
   margin-top: 1rem;
@@ -188,8 +216,8 @@ button {
 .like-before,
 .like-after {
   position: absolute;
-  top: 1.5rem;
-  left: 2rem;
+  top: 40%;
+  left: 10%;
 }
 
 .menu-like > .like-after {
