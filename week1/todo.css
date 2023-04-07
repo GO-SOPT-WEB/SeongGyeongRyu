@@ -26,7 +26,6 @@ body {
   display: flex;
   flex-direction: column;
 
-  font-family: "Jua", sans-serif;
   background-color: var(--color-background);
 }
 
@@ -68,7 +67,7 @@ main {
   row-gap: 2rem;
 }
 
-.calendar > article > p {
+.calendar__day > p {
   display: grid;
   justify-content: center;
   align-content: center;
@@ -76,7 +75,7 @@ main {
   font-size: 2rem;
 }
 
-.calendar > article > img > text {
+.calendar__day > img > text {
   font-weight: bold;
 }
 
