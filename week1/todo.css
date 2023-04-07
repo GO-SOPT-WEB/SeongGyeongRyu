@@ -58,14 +58,14 @@ body {
   border-radius: 2.5rem;
 }
 
-.weekly > section {
+.weekly > article {
   display: grid;
   justify-content: center;
   align-content: center;
   row-gap: 2rem;
 }
 
-.weekly > section > p {
+.weekly > article > p {
   display: grid;
   justify-content: center;
   align-content: center;
@@ -73,7 +73,7 @@ body {
   font-size: 2rem;
 }
 
-.weekly > section > img > text {
+.weekly > article > img > text {
   font-weight: bold;
 }
 
@@ -110,7 +110,7 @@ body {
   font-size: 2.5rem;
 }
 
-.todo-section > .todo-content {
+.todo-content {
   display: grid;
   grid-template-columns: 1fr 3fr;
   align-items: center;
@@ -119,6 +119,11 @@ body {
   margin-left: 1rem;
 
   font-size: 1.5rem;
+}
+
+.todo-done {
+  filter: invert(18%) sepia(67%) saturate(3521%) hue-rotate(322deg)
+    brightness(100%) contrast(87%);
 }
 
 .footer {
