@@ -156,7 +156,7 @@ button {
 }
 
 .menu-item > .menu-like > h1 {
-  font-size: 2rem;
+  font-size: 1.5rem;
   margin-top: 1rem;
 }
 
@@ -172,7 +172,7 @@ button {
   bottom: 0;
 
   width: 100%;
-  height: 80%;
+  height: 78%;
 }
 
 .menu-item > .menu-like {
@@ -205,15 +205,26 @@ button {
 }
 
 .menu-hashtag {
-  width: 10rem;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  overflow: hidden;
+
+  width: 11rem;
+  height: 1.5rem;
 }
 
 .menu-hashtag > p {
-  width: 5rem;
-
+  display: flex;
+  justify-content: center;
+  align-items: center;
   white-space: nowrap;
-  text-overflow: clip;
-  overflow: hidden;
+
+  background-color: #fbdea2;
+  padding: 0.5rem;
+  border-radius: 3rem;
+
+  height: 1.5rem;
 }
 
 .menu-hashtag > p::before {
