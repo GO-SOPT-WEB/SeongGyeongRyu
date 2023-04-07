@@ -4,7 +4,10 @@
   --color-background: rgb(253, 241, 187);
   --color-title: rgb(183, 180, 200);
   --color-weekly: rgba(255, 204, 51, 0.7);
-  --color-tag: rgb(223, 95, 95);
+  --color-tag-daily: rgb(223, 95, 95);
+  --color-tag-sopt: rgb(123, 33, 33);
+  --color-tag-happy: rgb(232, 86, 130);
+  --color-tag-picme: rgb(219, 169, 170);
   --color-footer: rgb(205, 226, 235);
   --color-footer-hover: rgb(205, 180, 235);
   --color-shadow: rgba(0, 0, 0, 0.2);
@@ -89,7 +92,7 @@ body {
   border-radius: 2.5rem;
 }
 
-.todo-section {
+.todo-article {
   display: flex;
   flex-direction: column;
 
@@ -99,15 +102,27 @@ body {
   row-gap: 0.5rem;
 }
 
-.todo-section > .todo-tag {
+div[class^="todo-tag"] {
   display: flex;
   justify-content: center;
   align-items: center;
   margin: 1rem;
 
-  background-color: var(--color-tag);
   border-radius: 2.5rem;
   font-size: 2.5rem;
+}
+
+.todo-tag-daily {
+  background-color: var(--color-tag-daily);
+}
+.todo-tag-sopt {
+  background-color: var(--color-tag-sopt);
+}
+.todo-tag-happy {
+  background-color: var(--color-tag-happy);
+}
+.todo-tag-picme {
+  background-color: var(--color-tag-picme);
 }
 
 .todo-content {
