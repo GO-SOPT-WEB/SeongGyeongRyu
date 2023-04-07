@@ -47,11 +47,11 @@ body {
 }
 
 .weekly {
-  width: 80%;
-  height: 15rem;
-
   display: grid;
   grid-template-columns: repeat(7, 1fr);
+
+  width: 80%;
+  height: 15rem;
 
   background-color: var(--color-weekly);
   box-shadow: 0.5rem 0.5rem var(--color-shadow);
@@ -69,6 +69,7 @@ body {
   display: grid;
   justify-content: center;
   align-content: center;
+
   font-size: 2rem;
 }
 
@@ -77,22 +78,23 @@ body {
 }
 
 .todos {
-  width: 80%;
-  height: 45rem;
-
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
   row-gap: 2rem;
 
+  width: 80%;
+  height: 45rem;
+
   border-radius: 2.5rem;
 }
 
 .todo-section {
-  width: 50%;
-  height: 20rem;
   display: flex;
   flex-direction: column;
+
+  width: 50%;
+  height: 20rem;
 
   row-gap: 0.5rem;
 }
@@ -104,7 +106,6 @@ body {
   margin: 1rem;
 
   background-color: var(--color-tag);
-
   border-radius: 2.5rem;
   font-size: 2.5rem;
 }
@@ -121,12 +122,12 @@ body {
 }
 
 .footer {
-  height: 15rem;
-
   display: flex;
   justify-content: center;
   align-items: center;
   column-gap: 2rem;
+
+  height: 15rem;
 }
 
 .footer > button {
