@@ -47,9 +47,9 @@ button {
   display: none;
 }
 
-.header > img:hover + .header__sidebar {
-  display: flex;
-  flex-direction: column;
+.header > img:hover + .header__sidebar,
+.header__sidebar:hover {
+  display: block;
 
   position: absolute;
 
@@ -63,6 +63,8 @@ button {
   font-size: 30px;
 
   background-color: #fff;
+
+  cursor: pointer;
 }
 
 .header__sidebar > h1 {
@@ -83,6 +85,10 @@ button {
   outline: 1px;
 }
 
+.header__sidebar > div:hover {
+  color: #fb9da7;
+}
+
 .main {
   display: grid;
   grid-template-columns: 1fr 6fr;
@@ -101,7 +107,7 @@ button {
   gap: 1rem;
 
   padding: 2rem;
-  width: 25rem;
+  width: 20rem;
 
   border-radius: 3rem;
   background-color: #fcccd4;
@@ -170,10 +176,12 @@ button {
 }
 
 .menu-item > .menu-like {
-  width: 100%;
-  height: 13%;
   display: flex;
   justify-content: center;
+
+  width: 100%;
+  height: 13%;
+
   position: relative;
 }
 
@@ -197,8 +205,19 @@ button {
 }
 
 .menu-hashtag {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  width: 10rem;
+}
+
+.menu-hashtag > p {
+  width: 5rem;
+
+  white-space: nowrap;
+  text-overflow: clip;
+  overflow: hidden;
+}
+
+.menu-hashtag > p::before {
+  content: "#";
 }
 
 /* 미디어 쿼리 */
