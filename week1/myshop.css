@@ -48,12 +48,15 @@ header {
   left: 0;
 
   width: 100vw;
-  height: 100px;
+  height: 10rem;
   padding: 0 2rem;
 
   background-color: var(--color-header);
-  font-size: 3rem;
   z-index: 2;
+}
+
+header > h1 {
+  font-size: 3rem;
 }
 
 header > img {
@@ -63,7 +66,7 @@ header > img {
   cursor: pointer;
 }
 
-header__sidebar {
+.header__sidebar {
   display: none;
 }
 
@@ -72,19 +75,18 @@ header > img:hover + .header__sidebar,
   display: block;
   position: absolute;
   right: 0;
-  top: 0;
 
   width: 20%;
   height: 100vh;
-  padding: 20px;
+  padding: 2rem;
 
   background-color: var(--color-sidebar);
-  font-size: 30px;
+  font-size: 3rem;
 
   cursor: pointer;
 }
 
-.header__sidebar > h1 {
+.header__sidebar > h2 {
   margin-bottom: 3rem;
 }
 
@@ -97,8 +99,8 @@ header > img:hover + .header__sidebar,
 
   border: none;
   background-color: transparent;
-  font-size: 25px;
-  outline: 1px;
+  font-size: 2.5rem;
+  outline: 0.1rem;
 }
 
 .header__sidebar > div:hover {
@@ -217,7 +219,7 @@ nav > button:hover {
   display: block;
 }
 
-.menu__item > .menu__like > h1 {
+.menu__item > .menu__like > h2 {
   font-size: 1.5rem;
   margin-top: 1rem;
 }
@@ -232,7 +234,7 @@ nav > button:hover {
   height: 1.5rem;
 }
 
-.menu__hashtag > p {
+.menu__hashtag > li {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -245,14 +247,14 @@ nav > button:hover {
   background-color: var(--color-hashtag);
 }
 
-.menu__hashtag > p::before {
+.menu__hashtag > li::before {
   content: "#";
 }
 
 /* 미디어 쿼리 */
 
 @media screen and (max-width: 1279px) {
-  .menu {
+  .menu__wrapper {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
 
@@ -262,7 +264,7 @@ nav > button:hover {
 }
 
 @media screen and (max-width: 1199px) {
-  .menu {
+  .menu__wrapper {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
 
@@ -272,7 +274,7 @@ nav > button:hover {
 }
 
 @media screen and (max-width: 1023px) {
-  .menu {
+  .menu__wrapper {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
 
@@ -282,7 +284,7 @@ nav > button:hover {
 }
 
 @media screen and (max-width: 899px) {
-  .menu {
+  .menu__wrapper {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
 
@@ -292,7 +294,7 @@ nav > button:hover {
 }
 
 @media screen and (max-width: 750px) {
-  .menu {
+  .menu__wrapper {
     display: flex;
     flex-direction: column;
 
