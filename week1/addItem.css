@@ -1,0 +1,92 @@
+@import "reset.css";
+
+:root {
+  --color-background: #fff9be;
+  --color-main: #f8cad4;
+  --color-button: #ba5d6f;
+}
+
+body,
+html {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 3rem;
+
+  width: 100%;
+
+  font-family: "Do Hyeon", sans-serif;
+  background-color: var(--color-background);
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 80%;
+  height: 100%;
+
+  padding: 2rem;
+
+  border-radius: 2.5rem;
+  background-color: var(--color-main);
+}
+
+main > h1 {
+  font-size: 5rem;
+}
+
+main > form {
+  display: flex;
+  flex-direction: column;
+  align-self: flex-start;
+  gap: 3rem;
+
+  width: 100%;
+}
+
+form > * {
+  font-size: 3rem;
+}
+
+form > label {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+input {
+  width: 50%;
+
+  border: none;
+
+  font-size: 2rem;
+}
+
+input[type="input"]:focus {
+  outline: 2px solid var(--color-button);
+}
+
+img {
+  margin-top: 1rem;
+
+  width: 20%;
+  height: 20%;
+
+  object-fit: fill;
+}
+
+button {
+  width: 20%;
+  padding: 1.5rem;
+  margin-top: 1rem;
+
+  border: none;
+  border-radius: 2.5rem;
+  background-color: var(--color-button);
+
+  font-size: 2.5rem;
+  font-weight: 500;
+
+  cursor: pointer;
+}
