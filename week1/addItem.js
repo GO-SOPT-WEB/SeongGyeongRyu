@@ -19,8 +19,29 @@ photoDOM.addEventListener("change", () => {
   };
 });
 
-//photoDOM, 즉 이벤트가 일어난 대상(e.target)인 input 아래 files에 어떤 파일들을 올렸는지가 유사배열(배열처럼 생겼지만 배열은 아닌 객체)로 나온다.
-//0번 키에 file 객체가 들어있는데, 이를 base 64 문자열로 바꾸는 것
-//하지만 이 file 객체에는 파일에 대한 정보는 들어있지만 "파일 데이터 자체"가 들어있지 않아서 fileReader를 이용해서 파일 자체를 가져오는 것이다.
-//그리고 그 파일을 읽는 방법은 readAsText, readAsDataURL, readAsArrayBuffer, readAsBinaryString 이렇게 4가지가 있는데
-//우리는 src에 넣어주기 위해서 readAsDataUrl을 통해 base64로 인코딩을 하는 것이다.
+/*
+photoDOM, 즉 이벤트가 일어난 대상(e.target)인 input 아래 files에 어떤 파일들을 올렸는지가 유사배열(배열처럼 생겼지만 배열은 아닌 객체)로 나온다.
+0번 키에 file 객체가 들어있는데, 이를 base 64 문자열로 바꾸는 것
+하지만 이 file 객체에는 파일에 대한 정보는 들어있지만 "파일 데이터 자체"가 들어있지 않아서 fileReader를 이용해서 파일 자체를 가져오는 것이다.
+그리고 그 파일을 읽는 방법은 readAsText, readAsDataURL, readAsArrayBuffer, readAsBinaryString 이렇게 4가지가 있는데
+우리는 src에 넣어주기 위해서 readAsDataUrl을 통해 base64로 인코딩을 하는 것이다.
+*/
+
+// 2. 사진 미리보기
+const menuForm = document.querySelector(".menu-form");
+const menuNameInput = document.querySelector("#menu-name");
+const menuHashtagInput = document.querySelector("#menu-hashtag");
+const menuPictureInput = document.querySelector("#menu-pic");
+
+const onMenuSubmit = (event) => {
+  event.preventDefault();
+
+  const menuName = menuNameInput.value;
+  const menuHashtags = menuHashtagInput.value;
+  //   const menuPicture = menuPictureInput.value;
+
+  //아직 이미지는 저장 안함
+  localStorage.setItem("newMenu", JSON.stringify({ menuName, menuHashtags }));
+};
+
+menuForm.addEventListener("submit", onMenuSubmit);

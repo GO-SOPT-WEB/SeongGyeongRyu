@@ -77,6 +77,8 @@ img {
 }
 
 button {
+  align-self: center;
+
   width: 20%;
   padding: 1.5rem;
   margin-top: 1rem;
