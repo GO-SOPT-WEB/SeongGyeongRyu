@@ -1,0 +1,304 @@
+@import "./reset.css";
+
+:root {
+  --color-background: #fee2c6;
+  --color-header: #fbdea2;
+  --color-sidebar: #fff;
+  --color-sidebar-hover: #fb9da7;
+  --color-nav: #fcccd4;
+  --color-nav-hover: #8a2be2;
+  --color-menu: #fb9da7;
+  --color-hashtag: #fbdea2;
+}
+
+/* 아이템을 선택했을 때 좌우로 흔들리는 애니메이션 */
+@keyframes item-ani {
+  25% {
+    transform: rotate(2deg) scale(1.01);
+  }
+  50% {
+    transform: rotate(0deg) scale(1);
+  }
+  75% {
+    transform: rotate(-2deg) scale(1.01);
+  }
+}
+
+* {
+  box-sizing: border-box;
+
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+
+  background-color: var(--color-background);
+  font-family: "Do Hyeon", sans-serif;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  left: 0;
+
+  width: 100vw;
+  height: 10rem;
+  padding: 0 2rem;
+
+  background-color: var(--color-header);
+  z-index: 2;
+}
+
+header > h1 {
+  font-size: 3rem;
+}
+
+header > img {
+  width: 8%;
+  height: 50%;
+
+  cursor: pointer;
+}
+
+.header__sidebar {
+  display: none;
+}
+
+header > img:hover + .header__sidebar,
+.header__sidebar:hover {
+  display: block;
+  position: absolute;
+  right: 0;
+
+  width: 20%;
+  height: 100vh;
+  padding: 2rem;
+
+  background-color: var(--color-sidebar);
+  font-size: 3rem;
+
+  cursor: pointer;
+}
+
+.header__sidebar > h2 {
+  margin-bottom: 3rem;
+}
+
+.header__sidebar > div {
+  display: flex;
+  align-items: center;
+
+  width: 80%;
+  height: 5rem;
+
+  border: none;
+  background-color: transparent;
+  font-size: 2.5rem;
+  outline: 0.1rem;
+}
+
+.header__sidebar > div:hover {
+  color: var(--color-sidebar-hover);
+}
+
+main {
+  display: flex;
+  column-gap: 2rem;
+
+  padding: 2rem;
+}
+
+nav {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  width: 20rem;
+  height: 25rem;
+  padding: 2rem;
+  gap: 1rem;
+
+  border-radius: 3rem;
+  background-color: var(--color-nav);
+}
+
+nav > * {
+  font-size: 2.5rem;
+}
+
+nav > button {
+  width: 100%;
+  height: 7rem;
+
+  border-radius: 3rem;
+  border: none;
+
+  cursor: pointer;
+}
+
+nav > button:hover {
+  background-color: var(--color-nav-hover);
+  color: var(--color-sidebar);
+}
+
+.menu__wrapper {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+
+  width: calc(100% - 20rem);
+  gap: 1.5rem;
+}
+
+.menu__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+
+  width: 100%;
+  height: 25rem;
+
+  background-color: var(--color-menu);
+  border-radius: 3rem;
+
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.menu__item:hover {
+  animation: item-ani 0.8s linear 1;
+}
+
+.menu__item > .menu__hashtag {
+  display: flex;
+
+  font-size: 1rem;
+  gap: 0.1rem;
+}
+
+.menu__item > img {
+  position: absolute;
+  bottom: 0;
+
+  width: 100%;
+  height: 78%;
+}
+
+.menu__item > .menu__like {
+  display: flex;
+  justify-content: center;
+  position: relative;
+
+  width: 100%;
+  height: 13%;
+}
+
+.like__before,
+.like__after {
+  position: absolute;
+  top: 40%;
+  left: 10%;
+}
+
+.menu__like > .like__after {
+  display: none;
+}
+
+.menu__like:hover > .like__before {
+  display: none;
+}
+
+.menu__like:hover > .like__after {
+  display: block;
+}
+
+.menu__item > .menu__like > h2 {
+  font-size: 1.5rem;
+  margin-top: 1rem;
+}
+
+.menu__hashtag {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  overflow: hidden;
+
+  width: 11rem;
+  height: 1.5rem;
+}
+
+.menu__hashtag > li {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  white-space: nowrap;
+  height: 1.5rem;
+
+  padding: 0.5rem;
+
+  border-radius: 3rem;
+  background-color: var(--color-hashtag);
+}
+
+.menu__hashtag > li::before {
+  content: "#";
+}
+
+/* 미디어 쿼리 */
+
+@media screen and (max-width: 1279px) {
+  .menu__wrapper {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+
+    width: calc(100% - 20rem);
+    gap: 1.5rem;
+  }
+}
+
+@media screen and (max-width: 1199px) {
+  .menu__wrapper {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+
+    width: calc(100% - 20rem);
+    gap: 1.5rem;
+  }
+}
+
+@media screen and (max-width: 1023px) {
+  .menu__wrapper {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+
+    width: calc(100% - 20rem);
+    gap: 1.5rem;
+  }
+}
+
+@media screen and (max-width: 899px) {
+  .menu__wrapper {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+
+    width: calc(100% - 20rem);
+    gap: 1.5rem;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .menu__wrapper {
+    display: flex;
+    flex-direction: column;
+
+    width: calc(100% - 20rem);
+    gap: 1.5rem;
+  }
+}
