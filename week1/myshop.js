@@ -23,8 +23,8 @@ for (let i = 0; i < menuItems.length; i++) {
 }
 
 // 2. 카테고리 필터링 기능
-const categories = document.querySelectorAll("nav > button");
-categories.forEach((category) => {
+const categories = document.querySelectorAll("label > button");
+const categoryCheckboxes = categories.forEach((category) => {
   category.addEventListener("click", () => {
     const filterCategory = category.dataset.filter;
     console.log(filterCategory);
@@ -41,3 +41,5 @@ const handleRenderFilteredMenus = (filterCategory) => {
     }
   });
 };
+
+// 3. 카테고리 선택 시 카드섹션 위에 선택한 카테고리 보여주기

@@ -30,10 +30,12 @@
       <nav>
         <strong>종류</strong>
 
-        <button type="button" data-filter="all">📍 전체 📍</button>
-        <button type="button" data-filter="fruit">🍒 과일 🍒</button>
-        <button type="button" data-filter="sweet">🍭 달달구리 🍭</button>
-        <button type="button" data-filter="etc">😀 기타 😀</button>
+        <ul class="category">
+          <li data-filter="all"><input type="checkbox" />📍 전체 📍</li>
+          <li data-filter="fruit"><input type="checkbox" /> 🍒 과일 🍒</li>
+          <li data-filter="sweet"><input type="checkbox" />🍭 달달구리 🍭</li>
+          <li data-filter="etc"><input type="checkbox" />😀 기타 😀</li>
+        </ul>
       </nav>
 
       <section class="menu__wrapper">
