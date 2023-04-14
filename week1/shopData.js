@@ -1,4 +1,4 @@
-const shopData = [
+export const shopData = [
   {
     category: "etc",
     name: "육회",
@@ -74,5 +74,3 @@ const shopData = [
       "https://mblogthumb-phinf.pstatic.net/MjAyMjA0MTlfMTk2/MDAxNjUwMzI0NTYyOTQw.cT_l83fc3bytUp0lNGrwTEoYCTJ__P2hh-04_z0dBE4g.cEe8RmlSKqz6yCiUFNwPCwxDSmsn4B1qodWZDmwpjUsg.JPEG.chltkdgns159/1650323328883.jpg?type=w800",
   },
 ];
-
-export { shopData };

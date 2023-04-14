@@ -155,7 +155,8 @@ nav > button {
   cursor: pointer;
 }
 
-nav > button:hover {
+nav > button:hover,
+nav > button:focus {
   background-color: var(--color-nav-hover);
   color: var(--color-sidebar);
 }
