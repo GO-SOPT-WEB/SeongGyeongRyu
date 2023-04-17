@@ -9,6 +9,7 @@
   --color-nav-hover: #8a2be2;
   --color-menu: #fb9da7;
   --color-hashtag: #fbdea2;
+  --color-hashtag-background: #fdd4d8;
 }
 
 /* 아이템을 선택했을 때 좌우로 흔들리는 애니메이션 */
@@ -41,7 +42,7 @@ body {
   font-family: "Do Hyeon", sans-serif;
 }
 
-header {
+.title {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -176,7 +177,18 @@ nav > * {
   grid-template-columns: repeat(6, 1fr);
 
   width: calc(100% - 20rem);
+
   gap: 1.5rem;
+}
+
+.category__tag {
+}
+
+.category__tag > div {
+  height: 3rem;
+
+  border-radius: 2.5rem;
+  background-color: var(--color-header);
 }
 
 .menu__item {
@@ -188,8 +200,8 @@ nav > * {
   width: 100%;
   height: 25rem;
 
-  background-color: var(--color-menu);
   border-radius: 3rem;
+  background-color: var(--color-menu);
 
   overflow: hidden;
   cursor: pointer;
@@ -240,16 +252,20 @@ nav > * {
 }
 
 .menu__hashtag {
+  position: relative;
+}
+
+.menu__hashtag > ul {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
   overflow: hidden;
 
-  width: 11rem;
+  width: 9rem;
   height: 1.5rem;
 }
 
-.menu__hashtag > li {
+.menu__hashtag__detail {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -264,6 +280,45 @@ nav > * {
 
 .menu__hashtag > li::before {
   content: "#";
+}
+
+.menu__hashtag > button {
+  border: none;
+  border-radius: 1rem;
+  width: 1.5rem;
+  height: 1.5rem;
+
+  cursor: pointer;
+}
+
+.menu_allHashtag {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+
+  padding: 1rem;
+
+  top: 5.5rem;
+
+  width: 50%;
+
+  background-color: var(--color-hashtag-background);
+  border-radius: 0.5rem;
+  z-index: 1;
+}
+
+.menu_allHashtag > li {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 90%;
+  height: 1.5rem;
+
+  border-radius: 1rem;
+  background-color: #fff;
 }
 
 /* 미디어 쿼리 */
