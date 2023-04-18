@@ -1,28 +1,37 @@
 <!DOCTYPE html>
 <html lang="ko">
   <head>
-    <!-- <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /> -->
-    <link rel="shortcut icon" href="#" />
-
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta
       name="viewport"
       content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0"
     />
+    <link rel="shortcut icon" href="#" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Jua&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="./index.css" />
+    <link rel="stylesheet" href="./style.css" />
     <title>💛 Todo Mate 💛</title>
   </head>
   <body>
     <main id="app"></main>
+    <footer class="todo__footer">
+      <button data-url="/calendar" href="/calendar" class="todo_calendar">
+        <img
+          src="src/assets/Img/Ic_calendar.svg"
+          alt="완료유무를-표시-아이콘"
+        />
+        Calendar
+      </button>
+      <button data-url="/my" class="todo_my">
+        <img src="src/assets/Img/Ic_my.svg" alt="완료유무를-표시-아이콘" />
+        My
+      </button>
+    </footer>
     <script type="module" src="./src/index.js"></script>
   </body>
 </html>

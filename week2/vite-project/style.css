@@ -158,7 +158,7 @@ header {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 15rem;
+  height: 10rem;
 
   color: var(--color-title);
   font-size: 5rem;

@@ -1,6 +1,6 @@
 //MainPage : 생성자 함수 (js에서 객체를 생성하기 위해서 사용되는 특수한 함수)
 //$ : DOM 객체를 일반 변수와 구분하기 위한 컨벤션
-function MainPage($container) {
+function Todo($container) {
   //$container : #app에 해당하는 DOM -> <main id="app"></main>
   this.$container = $container;
 
@@ -102,20 +102,15 @@ function MainPage($container) {
             </article>
           </section>
         </main>
+
         
-        <footer>
-          <button>
-            <img src="src/assets/Img/Ic_calendar.svg" alt="완료유무를-표시-아이콘" />
-            Calendar
-          </button>
-          <button>
-            <img src="src/assets/Img/Ic_my.svg" alt="완료유무를-표시-아이콘" />
-            My
-          </button>
-        </footer>
       </body>  
           `;
   };
   this.render();
+
+  // const calendarBtn = document.querySelector(".todo_calendar");
+  // calendarBtn.addEventListener("click", () => {});
 }
-export default MainPage;
+
+export default Todo;

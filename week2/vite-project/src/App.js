@@ -1,25 +1,24 @@
-import { ROUTE_LIST } from "./router";
-
-const BASE_URL = "http://localhost:5174";
+import { BASE_URL } from "./contants/routerInfo";
+import Router from "./router";
+import { navigate } from "./utils/navigate";
+import { $ } from "./utils/querySelector";
 
 function App($container) {
-  this.$container = $container; //#app에 해당하는 DOM -> <main id="app"></main>
-  let currentPage = undefined;
+  this.$container = $container;
 
   const init = () => {
-    //location :  URL 정보를 가져오는 객체
-    const findMatchedRoute = () =>
-      ROUTE_LIST.find((route) => route.path === location.pathname);
-    console.log(location);
+    $(".todo__footer").addEventListener("click", (e) => {
+      const target = e.target.closest("button");
 
-    const route = () => {
-      currentPage = null;
-      const TargetPage = findMatchedRoute()?.element || Error;
-      currentPage = new TargetPage(this.$container);
-    };
+      const targetURL = target.dataset.url.replace(BASE_URL, "");
 
-    route();
+      navigate(targetURL);
+    });
+
+    new Router($container);
   };
+
   init();
 }
+
 export default App;
