@@ -136,11 +136,12 @@ button {
   --color-footer: rgb(205, 226, 235);
   --color-footer-hover: rgb(205, 180, 235);
   --color-shadow: rgba(0, 0, 0, 0.2);
+  --color-category: rgb(233, 153, 171);
 }
 
 html,
 body {
-  max-width: 43rem;
+  max-width: 55rem;
   height: 100vh;
   margin: 0 auto;
   overflow-y: auto;
@@ -150,6 +151,7 @@ body {
 body {
   display: flex;
   flex-direction: column;
+  position: relative;
 
   background-color: var(--color-background);
 }
@@ -171,6 +173,8 @@ main {
   justify-items: center;
   align-items: center;
   row-gap: 2rem;
+
+  position: relative;
 
   width: 100%;
 }
@@ -272,6 +276,8 @@ footer {
   justify-content: center;
   align-items: center;
   column-gap: 2rem;
+  position: absolute;
+  bottom: 0rem;
 
   width: 100%;
   height: 15rem;
@@ -300,4 +306,40 @@ footer > button {
 
 footer > button:hover {
   background-color: var(--color-footer-hover);
+}
+
+/* ================================= */
+
+.category__all {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2%;
+
+  width: 80%;
+  height: 15rem;
+
+  background-color: var(--color-calendar);
+  box-shadow: 0.5rem 0.5rem var(--color-shadow);
+  border-radius: 2.5rem;
+}
+
+.category__Item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 22%;
+  height: 10rem;
+
+  font-size: 2.5rem;
+
+  background-color: var(--color-category);
+  border-radius: 3.5rem;
+
+  cursor: pointer;
+}
+
+.dragging {
+  opacity: 0.5;
 }
