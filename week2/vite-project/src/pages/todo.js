@@ -6,7 +6,7 @@ function Todo($container) {
 
   this.render = () => {
     this.$container.innerHTML = `
-        <main>
+
           <section class="calendar">
             <article class="calendar__day">
               <p>월</p>
@@ -66,7 +66,9 @@ function Todo($container) {
               </div>
             </article>
             <article class="todo__category">
-              <div class="todo__category__tag">SOPT</div>
+              <div class="todo__category__tag">SOPT
+              <button type="button">+</button>
+              </div>
               <div class="todo__content">
                 <img src="src/assets/Img/Ic_heart.svg" alt="완료유무를-표시-아이콘" />
                 미모스 인증
@@ -99,7 +101,7 @@ function Todo($container) {
               </div>
             </article>
           </section>
-        </main>
+
           `;
   };
 

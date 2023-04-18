@@ -7,7 +7,7 @@ function App($container) {
   this.$container = $container;
 
   const init = () => {
-    $(".todo__footer").addEventListener("click", (e) => {
+    $(".footer").addEventListener("click", (e) => {
       const target = e.target.closest("button");
 
       //`http://localhost:3000/post/1234`  -> `/post/1234`
