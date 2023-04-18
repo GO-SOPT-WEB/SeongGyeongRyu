@@ -12,19 +12,6 @@
   --color-hashtag-background: #fdd4d8;
 }
 
-/* 아이템을 선택했을 때 좌우로 흔들리는 애니메이션 */
-@keyframes item-ani {
-  25% {
-    transform: rotate(2deg) scale(1.01);
-  }
-  50% {
-    transform: rotate(0deg) scale(1);
-  }
-  75% {
-    transform: rotate(-2deg) scale(1.01);
-  }
-}
-
 * {
   box-sizing: border-box;
 
@@ -261,6 +248,8 @@ nav > * {
   flex-wrap: wrap;
   overflow: hidden;
 
+  position: relative;
+
   width: 9rem;
   height: 1.5rem;
 }
@@ -319,6 +308,17 @@ nav > * {
 
   border-radius: 1rem;
   background-color: #fff;
+}
+
+.menu_allHashtag > button {
+  position: absolute;
+  top: -1rem;
+  right: -0.5rem;
+
+  border: none;
+  background-color: transparent;
+
+  cursor: pointer;
 }
 
 /* 미디어 쿼리 */
