@@ -5,17 +5,23 @@ function MyCategory($container) {
 
   this.render = () => {
     this.$container.innerHTML = `
-            <section class="category__all">
-            </section>
-            `;
+              <section class="category__all">
+              </section>
+              `;
   };
+
   this.render();
 
   const categoryWrapper = document.querySelector(".category__all");
+  const storedCategory = JSON.parse(localStorage.getItem("categoryOrder"));
 
-  todoInfo.forEach((el) => {
+  const categoryListAtMount = storedCategory?.length
+    ? JSON.parse(storedCategory)
+    : todoInfo.map((todo) => todo.category);
+
+  categoryListAtMount.forEach((element) => {
     const categoryItem = document.createElement("article");
-    categoryItem.innerText = el.category;
+    categoryItem.innerText = element;
     categoryItem.className = "category__Item";
     categoryItem.draggable = true;
     categoryWrapper.appendChild(categoryItem);
@@ -50,6 +56,12 @@ function MyCategory($container) {
 
     category.addEventListener("dragend", () => {
       category.classList.remove("dragging");
+      const categoryOrder = [];
+      document.querySelectorAll(".category__Item").forEach((category) => {
+        categoryOrder.push(category.innerText);
+      });
+
+      localStorage.setItem("categoryOrder", JSON.stringify(categoryOrder));
     });
   });
 
