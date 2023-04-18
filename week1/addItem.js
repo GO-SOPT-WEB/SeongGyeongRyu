@@ -1,6 +1,6 @@
 // 1. 사진 미리보기
-const photoDOM = document.querySelector("#menu-pic");
-const preview = document.querySelector(".image-box");
+const photoDOM = document.querySelector("#menu__pic");
+const preview = document.querySelector(".menu__img");
 
 //FileReader : 비동기적으로 동작
 //reader에 파일 객체가 load 된 이후에 src 값이 변경 되도록 onLoad 이벤트를 이용한다
@@ -28,20 +28,30 @@ photoDOM, 즉 이벤트가 일어난 대상(e.target)인 input 아래 files에 �
 */
 
 // 2. 사진 미리보기
-const menuForm = document.querySelector(".menu-form");
-const menuNameInput = document.querySelector("#menu-name");
-const menuHashtagInput = document.querySelector("#menu-hashtag");
-const menuPictureInput = document.querySelector("#menu-pic");
+const menuForm = document.querySelector(".menu__form");
+const menuNameInput = document.querySelector("#menu__name");
+const menuHashtagInput = document.querySelector("#menu__hashtag");
+const menuPictureInput = document.querySelector("#menu__pic");
+const menuCategorySelect = document.querySelector("#menu__category");
 
 const onMenuSubmit = (event) => {
   event.preventDefault();
 
   const menuName = menuNameInput.value;
-  const menuHashtags = menuHashtagInput.value;
+  const menuHashtags = menuHashtagInput.value.split(",");
+  const menuCategory = menuCategorySelect.value;
   //   const menuPicture = menuPictureInput.value;
 
-  //아직 이미지는 저장 안함
-  localStorage.setItem("newMenu", JSON.stringify({ menuName, menuHashtags }));
+  localStorage.setItem(
+    "newMenu",
+    JSON.stringify({
+      category: menuCategory,
+      name: menuName,
+      hashtags: menuHashtags,
+      imgSrc:
+        "https://zonzaemgame.com/data/file/kidsgame/1982092966_UnbJW9Xo_2429ebc6507ef55ab76f676d085ae9e0c9853355.jpg",
+    })
+  );
 };
 
 menuForm.addEventListener("submit", onMenuSubmit);
