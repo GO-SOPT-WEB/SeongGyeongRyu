@@ -10,6 +10,8 @@ function App($container) {
     $(".todo__footer").addEventListener("click", (e) => {
       const target = e.target.closest("button");
 
+      //`http://localhost:3000/post/1234`  -> `/post/1234`
+      //앞의 BASE_URL 부분을 잘라내고 navigate의 인자로 전달
       const targetURL = target.dataset.url.replace(BASE_URL, "");
 
       navigate(targetURL);

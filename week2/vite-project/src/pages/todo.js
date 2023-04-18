@@ -6,8 +6,6 @@ function Todo($container) {
 
   this.render = () => {
     this.$container.innerHTML = `
-      <body>
-        <header>TO DO MATE</header>
         <main>
           <section class="calendar">
             <article class="calendar__day">
@@ -49,7 +47,7 @@ function Todo($container) {
 
           <section class="todos">
             <article class="todo__category">
-              <div class="todo__category__tag">Daily</div>
+              <div class="todo__category__tag"></div>
               <div class="todo__content">
                 <img src="src/assets/Img/Ic_heart.svg" alt="완료유무를-표시-아이콘" />
                 8시 기상
@@ -102,15 +100,10 @@ function Todo($container) {
             </article>
           </section>
         </main>
-
-        
-      </body>  
           `;
   };
-  this.render();
 
-  // const calendarBtn = document.querySelector(".todo_calendar");
-  // calendarBtn.addEventListener("click", () => {});
+  this.render();
 }
 
 export default Todo;
