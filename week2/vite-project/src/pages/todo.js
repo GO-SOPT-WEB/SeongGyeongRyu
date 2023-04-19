@@ -9,6 +9,12 @@ function Todo($container) {
 
   this.render = () => {
     this.$container.innerHTML = `
+          <dialog class="modal">
+            <form>
+              <input type="text" placeholder="추가할 Todo를 입력해주세요!">
+              <button type="submit">추가</button>
+            </form>
+          </dialog>
 
           <section class="calendar">
             <article class="calendar__day">
@@ -89,6 +95,10 @@ function Todo($container) {
     todoCategoryTag.innerText = item.category;
     todoCategory.appendChild(todoCategoryTag);
 
+    const addTodoBtn = document.createElement("button");
+    addTodoBtn.innerText = "+";
+    todoCategoryTag.appendChild(addTodoBtn);
+
     item.todoList.forEach((todo) => {
       const todoContent = document.createElement("div");
       todoContent.className = "todo__content";
@@ -135,6 +145,30 @@ function Todo($container) {
       }
       handleCountTodo();
     });
+  });
+
+  //4. 투두 추가하기
+  const addTodoBtnList = document.querySelectorAll(
+    ".todo__category__tag > button"
+  );
+  const addTodoModal = document.querySelector(".modal");
+  const addTodoForm = document.querySelector(".modal > form");
+  const addTodoInput = addTodoForm.querySelector("input");
+
+  addTodoBtnList.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      document.body.style.backgroundColor = "rgba(0, 0, 0, 0.5)";
+      addTodoModal.classList.add("open");
+      addTodoInput.focus();
+    });
+  });
+
+  addTodoForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    document.body.style.backgroundColor = "#fdf1bb";
+    addTodoModal.classList.remove("open");
+
+    console.log(e);
   });
 }
 
