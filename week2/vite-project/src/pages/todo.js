@@ -106,16 +106,36 @@ function Todo($container) {
   });
 
   // 2. 하트 안의 숫자 계산하기 - querySelector가 클래스 명 안에 있는 공백을 인식하지 못함
-  const todoCntWrapper = document.getElementsByClassName("calendar__day today");
-  let todoCnt = todoCntWrapper[0].querySelector(".calendar__todo-cnt > p");
-  const allTodoList = document.querySelectorAll(
-    ".todo__content > img:not(.todo-done)"
-  ).length;
-  todoCnt.innerText = allTodoList;
+
+  const handleCountTodo = () => {
+    const todoCntWrapper = document.getElementsByClassName(
+      "calendar__day today"
+    );
+    let todoCnt = todoCntWrapper[0].querySelector(".calendar__todo-cnt > p");
+
+    const allTodoList = document.querySelectorAll(
+      ".todo__content > img:not(.todo-done)"
+    ).length;
+    todoCnt.innerText = allTodoList;
+  };
+
+  handleCountTodo();
 
   // 3. 할 일 완료 시 개수 줄어들도록 처리
-  // const todoDoneIcon
-  let isDone = false;
+  const todoIconList = document.querySelectorAll(".todo__content > img");
+
+  todoIconList.forEach((todoIcon) => {
+    todoIcon.addEventListener("click", () => {
+      if (todoIcon.parentNode.className === "todo__content") {
+        todoIcon.parentNode.classList.add("done");
+        todoIcon.className = "todo-done";
+      } else {
+        todoIcon.parentNode.classList.remove("done");
+        todoIcon.className = null;
+      }
+      handleCountTodo();
+    });
+  });
 }
 
 export default Todo;
