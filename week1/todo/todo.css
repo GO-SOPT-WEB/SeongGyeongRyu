@@ -1,4 +1,4 @@
-@import "reset.css";
+@import "../reset.css";
 
 :root {
   --color-background: rgb(253, 241, 187);
