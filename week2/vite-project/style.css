@@ -196,12 +196,27 @@ main {
   row-gap: 2rem;
 }
 
-.calendar__day > p {
+.calendar__day > p,
+.calendar__date {
   display: grid;
   justify-content: center;
   align-content: center;
 
   font-size: 2rem;
+}
+
+.calendar__todo-cnt {
+  position: relative;
+}
+
+.calendar__todo-cnt > p {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  font-size: 1.5rem;
+  font-weight: bold;
 }
 
 .calendar__day > img > text {
@@ -223,7 +238,6 @@ main {
 .todo__category {
   display: flex;
   flex-direction: column;
-  flex-basis: auto;
 
   width: 45%;
 
@@ -274,6 +288,10 @@ main {
   font-size: 1.5rem;
 }
 
+.todo__content > img {
+  width: 80%;
+  height: 80%;
+}
 .todo-done {
   filter: invert(18%) sepia(67%) saturate(3521%) hue-rotate(322deg)
     brightness(100%) contrast(87%);
