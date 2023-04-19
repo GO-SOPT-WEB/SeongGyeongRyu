@@ -1,4 +1,7 @@
 //MainPage : 생성자 함수 (js에서 객체를 생성하기 위해서 사용되는 특수한 함수)
+
+import { todoInfo } from "../contants/todoInfo";
+
 //$ : DOM 객체를 일반 변수와 구분하기 위한 컨벤션
 function Todo($container) {
   //$container : #app에 해당하는 DOM -> <main id="app"></main>
@@ -67,63 +70,6 @@ function Todo($container) {
           </section>
 
           <section class="todos">
-            <article class="todo__category">
-              <div class="todo__category__tag">
-              DAILY
-              <button type="button">+</button>
-              </div>
-              <div class="todo__content">
-                <img src="src/assets/Img/Ic_heart.svg" alt="완료유무를-표시-아이콘" />
-                8시 기상
-              </div>
-              <div class="todo__content">
-                <img
-                  src="src/assets/Img/Ic_heart.svg"
-                  class="todo-done"
-                  alt="완료유무를-표시-아이콘"
-                />
-                영어 공부
-              </div>
-              <div class="todo__content">
-                <img src="src/assets/Img/Ic_heart.svg" alt="완료유무를-표시-아이콘" />
-                홈트
-              </div>
-            </article>
-            <article class="todo__category">
-              <div class="todo__category__tag">SOPT
-              <button type="button">+</button>
-              </div>
-              <div class="todo__content">
-                <img src="src/assets/Img/Ic_heart.svg" alt="완료유무를-표시-아이콘" />
-                미모스 인증
-              </div>
-              <div class="todo__content">
-                <img src="src/assets/Img/Ic_heart.svg" alt="완료유무를-표시-아이콘" />
-                1차 세미나 과제하기
-              </div>
-              <div class="todo__content">
-                <img src="src/assets/Img/Ic_heart.svg" alt="완료유무를-표시-아이콘" />
-                코테스터디 문제 풀기
-              </div>
-            </article>
-            <article class="todo__category">
-              <div class="todo__category__tag">HAPPY</div>
-              <div class="todo__content">
-                <img src="src/assets/Img/Ic_heart.svg" alt="완료유무를-표시-아이콘" />
-                보이즈플래닛 보기
-              </div>
-            </article>
-            <article class="todo__category">
-              <div class="todo__category__tag">PIC.ME</div>
-              <div class="todo__content">
-                <img src="src/assets/Img/Ic_heart.svg" alt="완료유무를-표시-아이콘" />
-                2차 릴리즈 기능 구현
-              </div>
-              <div class="todo__content">
-                <img src="src/assets/Img/Ic_heart.svg" alt="완료유무를-표시-아이콘" />
-                2차 릴리즈 QA
-              </div>
-            </article>
           </section>
 
           `;
@@ -131,13 +77,45 @@ function Todo($container) {
 
   this.render();
 
-  // 1. 하트 안의 숫자 계산하기 - querySelector가 클래스 명 안에 있는 공백을 인식하지 못함
+  //1. 상수 파일에서 가져와서 투두 보여주기
+
+  const todoWrapper = document.querySelector(".todos");
+
+  todoInfo.forEach((item) => {
+    const todoCategory = document.createElement("article");
+    todoCategory.className = "todo__category";
+    const todoCategoryTag = document.createElement("div");
+    todoCategoryTag.className = "todo__category__tag";
+    todoCategoryTag.innerText = item.category;
+    todoCategory.appendChild(todoCategoryTag);
+
+    item.todoList.forEach((todo) => {
+      const todoContent = document.createElement("div");
+      todoContent.className = "todo__content";
+      todoContent.innerText = todo;
+
+      const todoIcon = document.createElement("img");
+      todoIcon.src = "src/assets/Img/Ic_heart.svg";
+      todoIcon.alt = "완료유무를-표시-아이콘";
+
+      todoContent.prepend(todoIcon);
+      todoCategory.appendChild(todoContent);
+    });
+
+    todoWrapper.appendChild(todoCategory);
+  });
+
+  // 2. 하트 안의 숫자 계산하기 - querySelector가 클래스 명 안에 있는 공백을 인식하지 못함
   const todoCntWrapper = document.getElementsByClassName("calendar__day today");
   let todoCnt = todoCntWrapper[0].querySelector(".calendar__todo-cnt > p");
   const allTodoList = document.querySelectorAll(
     ".todo__content > img:not(.todo-done)"
   ).length;
   todoCnt.innerText = allTodoList;
+
+  // 3. 할 일 완료 시 개수 줄어들도록 처리
+  // const todoDoneIcon
+  let isDone = false;
 }
 
 export default Todo;
