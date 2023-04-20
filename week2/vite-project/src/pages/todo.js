@@ -100,7 +100,21 @@ function Todo($container) {
     category.appendChild(todoContent);
   };
 
-  todoInfo.forEach((item) => {
+  //1-1. 로컬스토리지에서 가져온 카테고리 순서에 따라 보여주기
+
+  const storedCategoryOrder = JSON.parse(localStorage.getItem("categoryOrder"));
+
+  const sortedTodoInfo = todoInfo.sort((a, b) => {
+    return (
+      storedCategoryOrder.indexOf(a.category) -
+      storedCategoryOrder.indexOf(b.category)
+    );
+  });
+
+  const currentTodoOrder =
+    storedCategoryOrder === null ? todoInfo : sortedTodoInfo;
+
+  currentTodoOrder.forEach((item) => {
     const todoCategory = document.createElement("article");
     todoCategory.className = "todo__category";
     const todoCategoryTag = document.createElement("div");
@@ -121,7 +135,7 @@ function Todo($container) {
 
   // 2. 하트 안의 숫자 계산하기 - querySelector가 클래스 명 안에 있는 공백을 인식하지 못함
 
-  const handleCountTodo = () => {
+  const countTodo = () => {
     const todoCntWrapper = document.getElementsByClassName(
       "calendar__day today"
     );
@@ -133,7 +147,7 @@ function Todo($container) {
     todoCnt.innerText = allTodoList;
   };
 
-  handleCountTodo();
+  countTodo();
 
   // 3. 할 일 완료 시 개수 줄어들도록 처리
   const todoIconList = document.querySelectorAll(".todo__content > img");
@@ -147,7 +161,7 @@ function Todo($container) {
         todoIcon.parentNode.classList.remove("done");
         todoIcon.className = null;
       }
-      handleCountTodo();
+      countTodo();
     });
   });
 
@@ -168,7 +182,6 @@ function Todo($container) {
       addTodoModal.classList.add("open");
       addTodoInput.focus();
       addedTodoCategory = btn.parentNode.innerText.slice(0, -1).trim();
-      console.log(addedTodoCategory);
     });
   });
 

@@ -142,15 +142,19 @@ button {
 
 html,
 body {
-  max-width: 55rem;
+  max-width: 70rem;
   margin: 0 auto;
   overflow-y: auto;
   font-family: "Jua", sans-serif;
 }
 
 body {
+  max-width: 70rem;
   display: flex;
   flex-direction: column;
+  position: relative;
+
+  height: 100vh;
 
   background-color: var(--color-background);
 }
