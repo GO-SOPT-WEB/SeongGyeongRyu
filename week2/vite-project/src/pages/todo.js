@@ -11,7 +11,7 @@ function Todo($container) {
     this.$container.innerHTML = `
           <dialog class="modal">
             <form>
-              <input type="text" placeholder="추가할 Todo를 입력해주세요!">
+              <input name="addTodo" type="text" placeholder="추가할 Todo를 입력해주세요!">
               <button type="submit">추가</button>
             </form>
           </dialog>
@@ -87,6 +87,19 @@ function Todo($container) {
 
   const todoWrapper = document.querySelector(".todos");
 
+  const addTodoItem = (category, todo) => {
+    const todoContent = document.createElement("div");
+    todoContent.className = "todo__content";
+    todoContent.innerText = todo;
+
+    const todoIcon = document.createElement("img");
+    todoIcon.src = "src/assets/Img/Ic_heart.svg";
+    todoIcon.alt = "완료유무를-표시-아이콘";
+
+    todoContent.prepend(todoIcon);
+    category.appendChild(todoContent);
+  };
+
   todoInfo.forEach((item) => {
     const todoCategory = document.createElement("article");
     todoCategory.className = "todo__category";
@@ -100,16 +113,7 @@ function Todo($container) {
     todoCategoryTag.appendChild(addTodoBtn);
 
     item.todoList.forEach((todo) => {
-      const todoContent = document.createElement("div");
-      todoContent.className = "todo__content";
-      todoContent.innerText = todo;
-
-      const todoIcon = document.createElement("img");
-      todoIcon.src = "src/assets/Img/Ic_heart.svg";
-      todoIcon.alt = "완료유무를-표시-아이콘";
-
-      todoContent.prepend(todoIcon);
-      todoCategory.appendChild(todoContent);
+      addTodoItem(todoCategory, todo);
     });
 
     todoWrapper.appendChild(todoCategory);
@@ -153,13 +157,17 @@ function Todo($container) {
   );
   const addTodoModal = document.querySelector(".modal");
   const addTodoForm = document.querySelector(".modal > form");
-  const addTodoInput = addTodoForm.querySelector("input");
+  const addTodoInput = addTodoForm.querySelector('input[name="addTodo"]');
+  const categoryList = document.querySelectorAll(".todo__category__tag");
+  let addedTodoCategory = null;
 
   addTodoBtnList.forEach((btn) => {
     btn.addEventListener("click", () => {
       document.body.style.backgroundColor = "rgba(0, 0, 0, 0.5)";
       addTodoModal.classList.add("open");
       addTodoInput.focus();
+      addedTodoCategory = btn.parentNode.innerText.slice(0, -1).trim();
+      console.log(addedTodoCategory);
     });
   });
 
@@ -168,7 +176,18 @@ function Todo($container) {
     document.body.style.backgroundColor = "#fdf1bb";
     addTodoModal.classList.remove("open");
 
-    console.log(e);
+    const newTodo = addTodoInput.value;
+
+    const filteredTodo = todoInfo.find((item) =>
+      item.category.includes(addedTodoCategory)
+    );
+    filteredTodo.todoList.push(newTodo);
+
+    const addTodoCategory = Array.from(categoryList).find((item) =>
+      item.innerText.includes(addedTodoCategory)
+    );
+
+    addTodoItem(addTodoCategory.parentNode, newTodo);
   });
 }
 
