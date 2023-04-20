@@ -159,6 +159,7 @@ function Todo($container) {
   const addTodoForm = document.querySelector(".modal > form");
   const addTodoInput = addTodoForm.querySelector('input[name="addTodo"]');
   const categoryList = document.querySelectorAll(".todo__category__tag");
+  const currentAllTodo = todoInfo.map((item) => item.todoList).flat();
   let addedTodoCategory = null;
 
   addTodoBtnList.forEach((btn) => {
@@ -178,16 +179,18 @@ function Todo($container) {
 
     const newTodo = addTodoInput.value;
 
-    const filteredTodo = todoInfo.find((item) =>
-      item.category.includes(addedTodoCategory)
-    );
-    filteredTodo.todoList.push(newTodo);
+    if (!currentAllTodo.includes(newTodo)) {
+      const filteredTodo = todoInfo.find((item) =>
+        item.category.includes(addedTodoCategory)
+      );
 
-    const addTodoCategory = Array.from(categoryList).find((item) =>
-      item.innerText.includes(addedTodoCategory)
-    );
+      filteredTodo.todoList.push(newTodo);
 
-    addTodoItem(addTodoCategory.parentNode, newTodo);
+      const addTodoCategory = Array.from(categoryList).find((item) =>
+        item.innerText.includes(addedTodoCategory)
+      );
+      addTodoItem(addTodoCategory.parentNode, newTodo);
+    }
   });
 }
 
