@@ -104,15 +104,15 @@ function Todo($container) {
 
   const storedCategoryOrder = JSON.parse(localStorage.getItem("categoryOrder"));
 
-  const sortedTodoInfo = todoInfo.sort((a, b) => {
-    return (
-      storedCategoryOrder.indexOf(a.category) -
-      storedCategoryOrder.indexOf(b.category)
-    );
-  });
-
   const currentTodoOrder =
-    storedCategoryOrder === null ? todoInfo : sortedTodoInfo;
+    storedCategoryOrder === null
+      ? todoInfo
+      : todoInfo.sort((a, b) => {
+          return (
+            storedCategoryOrder.indexOf(a.category) -
+            storedCategoryOrder.indexOf(b.category)
+          );
+        });
 
   currentTodoOrder.forEach((item) => {
     const todoCategory = document.createElement("article");
