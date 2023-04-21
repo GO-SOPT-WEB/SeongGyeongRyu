@@ -3,7 +3,15 @@ import { shopData } from "./shopData.js";
 // 1. 상수 파일에서 데이터 가져와서 보여주기
 const menuWrapper = document.querySelector(".menu__wrapper");
 const menuItems = document.querySelectorAll(".menu__item");
-const addedItem = JSON.parse(localStorage.getItem("newMenu"));
+
+const renderHashtags = (hashtags, wrapper) => {
+  hashtags.forEach((el) => {
+    const hashtagItem = document.createElement("li");
+    hashtagItem.className = "menu__hashtag__detail";
+    hashtagItem.innerText = el;
+    wrapper.appendChild(hashtagItem);
+  });
+};
 
 for (let i = 0; i < menuItems.length; i++) {
   const menuName = menuItems[i].getElementsByTagName("h2")[0];
@@ -22,8 +30,29 @@ for (let i = 0; i < menuItems.length; i++) {
     menuHashtags.appendChild(hashtagItem);
   });
 
+  renderHashtags(shopData[i].hashtags, menuHashtags);
+
   menuItems[i].classList += " " + shopData[i].category;
 }
+
+//1-1. 로컬스토리지에 추가된 아이템 있으면 그것도 보여주기
+const addedMenu = JSON.parse(localStorage.getItem("newMenu"));
+const { addedCategory, addedName, addedHashtags } = addedMenu;
+
+const newMenu = menuItems[0].cloneNode(true);
+newMenu.className = "menu__item";
+const newMenuName = newMenu.querySelector("header > h2");
+newMenuName.innerText = addedName;
+const newMenuHashtagWrapper = newMenu.querySelector(".menu__hashtag > ul");
+const originalHashtagList = newMenuHashtagWrapper.querySelectorAll("li");
+originalHashtagList.forEach((item) => item.remove());
+
+renderHashtags(addedHashtags, newMenuHashtagWrapper);
+
+const newMenuImg = newMenu.querySelectorAll("img");
+newMenuImg[1].src = "https://pbs.twimg.com/media/FuKqQWLakAIzLMV.jpg";
+
+menuWrapper.appendChild(newMenu);
 
 // 2. 카테고리 필터링 기능
 const categories = document.querySelectorAll(".category > li ");

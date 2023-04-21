@@ -45,11 +45,9 @@ const onMenuSubmit = (event) => {
   localStorage.setItem(
     "newMenu",
     JSON.stringify({
-      category: menuCategory,
-      name: menuName,
-      hashtags: menuHashtags,
-      imgSrc:
-        "https://zonzaemgame.com/data/file/kidsgame/1982092966_UnbJW9Xo_2429ebc6507ef55ab76f676d085ae9e0c9853355.jpg",
+      addedCategory: menuCategory,
+      addedName: menuName,
+      addedHashtags: menuHashtags,
     })
   );
 };
