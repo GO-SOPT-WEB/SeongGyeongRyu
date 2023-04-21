@@ -11,7 +11,7 @@ export const shopData = [
     name: "스시",
     hashtags: ["승경씨의", "차애음식"],
     imgSrc:
-      "https://rimage.gnst.jp/livejapan.com/public/article/detail/a/00/00/a0000370/img/basic/a0000370_main.jpg?20201002142956&q=80&rw=750&rh=536",
+      "https://mblogthumb-phinf.pstatic.net/MjAxNzEwMjRfMTY3/MDAxNTA4ODA3NjQ0MDM1.23QVfejAuksBAD8xUBHc3TeYvd0ef0HQA2zsndgnTSwg.Jwl1QR103KYrhjN7w5ZuLNlSGJ98KdLKyKrahpAtXN8g.JPEG.dymg98/%EC%82%AC%EC%A7%84_1_%EC%99%84%EC%84%B1_1.jpg?type=w800",
   },
   {
     category: "fruit",

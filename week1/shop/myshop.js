@@ -28,22 +28,36 @@ for (let i = 0; i < menuItems.length; i++) {
 // 2. 카테고리 필터링 기능
 const categories = document.querySelectorAll(".category > li ");
 const categoryTagWrapper = document.querySelector(".category__tag");
+let isCategoryShowing = Array(4).fill(false);
 
 categories.forEach((category) => {
   category.addEventListener("click", () => {
-    const categoryTag = document.createElement("div");
-    categoryTag.innerText = category.innerText;
-    categoryTagWrapper.appendChild(categoryTag);
-
     const categoryCheckbox = category.querySelector("input");
     categoryCheckbox.checked = !categoryCheckbox.checked;
 
-    selectedCategories.push(category.dataset.filter);
-    handleRenderFilteredMenus(selectedCategories);
+    if (categoryCheckbox.checked) {
+      const newCategoryTag = document.createElement("div");
+      newCategoryTag.innerText = category.innerText;
+      newCategoryTag.className = category.dataset.filter;
+
+      const deleteCategoryBtn = document.createElement("button");
+      deleteCategoryBtn.type = "button";
+      deleteCategoryBtn.innerText = "❎";
+      newCategoryTag.appendChild(deleteCategoryBtn);
+
+      deleteCategoryBtn.addEventListener("click", () => {
+        categoryCheckbox.checked = !categoryCheckbox.checked;
+        deleteCategoryBtn.parentNode.remove();
+      });
+
+      categoryTagWrapper.appendChild(newCategoryTag);
+      // selectedCategories.push(category.dataset.filter);
+      renderFilteredMenus(selectedCategories);
+    }
   });
 });
 
-const handleRenderFilteredMenus = (selectedCategories) => {
+const renderFilteredMenus = (selectedCategories) => {
   if (selectedCategories.length === 0)
     menuItems.forEach((menu) => (menu.style.display = "flex"));
   else {
@@ -82,28 +96,3 @@ hashTagWrapperList.forEach((hashTagWrapper) => {
     });
   }
 });
-
-if (hashTagOpenFlag) {
-  menuItems[i].prepend(allHashTagWrapper);
-
-  const deleteBtn = document.createElement("button");
-  deleteBtn.type = "button";
-  deleteBtn.innerText = "❎";
-  deleteBtn.addEventListener(
-    "click",
-    () => (hashTagOpenFlag = !hashTagOpenFlag)
-  );
-  allHashTagWrapper.prepend(deleteBtn);
-
-  shopData[i].hashtags.forEach((el) => {
-    const hashtagItem = document.createElement("li");
-    hashtagItem.innerText = el;
-    allHashTagWrapper.appendChild(hashtagItem);
-  });
-} else {
-  //removeChild로 캐싱하는 방법 생각해보기
-  while (allHashTagWrapper.firstChild) {
-    allHashTagWrapper.firstChild.remove();
-  }
-  allHashTagWrapper.remove();
-}

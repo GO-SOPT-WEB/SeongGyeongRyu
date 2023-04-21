@@ -1,4 +1,4 @@
-@import "./reset.css";
+@import "../reset.css";
 
 :root {
   --color-background: #fee2c6;
@@ -8,8 +8,21 @@
   --color-nav: #fcccd4;
   --color-nav-hover: #8a2be2;
   --color-menu: #fb9da7;
+  --color-category-tag: #eee44c;
   --color-hashtag: #fbdea2;
   --color-hashtag-background: #fdd4d8;
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 * {
@@ -162,6 +175,7 @@ nav > * {
 .menu__wrapper {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
+  grid-auto-flow: row;
 
   width: calc(100% - 20rem);
 
@@ -169,13 +183,28 @@ nav > * {
 }
 
 .category__tag {
+  display: flex;
+  grid-column: span 6;
+  gap: 1rem;
 }
 
 .category__tag > div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 8rem;
   height: 3rem;
+  gap: 0.2rem;
 
   border-radius: 2.5rem;
-  background-color: var(--color-header);
+  background-color: var(--color-category-tag);
+}
+
+.category__tag > div > button {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
 }
 
 .menu__item {
@@ -192,10 +221,8 @@ nav > * {
 
   overflow: hidden;
   cursor: pointer;
-}
 
-.menu__item:hover {
-  animation: item-ani 0.8s linear 1;
+  animation: fade-in 0.5s ease-in-out;
 }
 
 .menu__item > .menu__hashtag {
@@ -327,9 +354,16 @@ nav > * {
   .menu__wrapper {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
+    grid-auto-flow: row;
 
     width: calc(100% - 20rem);
     gap: 1.5rem;
+  }
+
+  .category__tag {
+    display: flex;
+    grid-column: span 5;
+    gap: 1rem;
   }
 }
 
@@ -337,9 +371,16 @@ nav > * {
   .menu__wrapper {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
+    grid-auto-flow: row;
 
     width: calc(100% - 20rem);
     gap: 1.5rem;
+  }
+
+  .category__tag {
+    display: flex;
+    grid-column: span 4;
+    gap: 1rem;
   }
 }
 
@@ -347,9 +388,16 @@ nav > * {
   .menu__wrapper {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
+    grid-auto-flow: row;
 
     width: calc(100% - 20rem);
     gap: 1.5rem;
+  }
+
+  .category__tag {
+    display: flex;
+    grid-column: span 3;
+    gap: 1rem;
   }
 }
 
@@ -357,9 +405,16 @@ nav > * {
   .menu__wrapper {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
+    grid-auto-flow: row;
 
     width: calc(100% - 20rem);
     gap: 1.5rem;
+  }
+
+  .category__tag {
+    display: flex;
+    grid-column: span 2;
+    gap: 1rem;
   }
 }
 
@@ -367,8 +422,15 @@ nav > * {
   .menu__wrapper {
     display: flex;
     flex-direction: column;
+    grid-auto-flow: row;
 
     width: calc(100% - 20rem);
     gap: 1.5rem;
+  }
+
+  .category__tag {
+    display: flex;
+    grid-column: span 1;
+    gap: 1rem;
   }
 }
