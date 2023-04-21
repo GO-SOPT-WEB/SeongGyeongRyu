@@ -37,22 +37,28 @@ for (let i = 0; i < menuItems.length; i++) {
 
 //1-1. 로컬스토리지에 추가된 아이템 있으면 그것도 보여주기
 const addedMenu = JSON.parse(localStorage.getItem("newMenu"));
-const { addedCategory, addedName, addedHashtags } = addedMenu;
 
-const newMenu = menuItems[0].cloneNode(true);
-newMenu.className = "menu__item";
-const newMenuName = newMenu.querySelector("header > h2");
-newMenuName.innerText = addedName;
-const newMenuHashtagWrapper = newMenu.querySelector(".menu__hashtag > ul");
-const originalHashtagList = newMenuHashtagWrapper.querySelectorAll("li");
-originalHashtagList.forEach((item) => item.remove());
+if (addedMenu) {
+  console.log("Hi");
+  const { addedCategory, addedName, addedHashtags } = addedMenu;
 
-renderHashtags(addedHashtags, newMenuHashtagWrapper);
+  const newMenu = menuItems[0].cloneNode(true);
+  newMenu.className = "menu__item";
 
-const newMenuImg = newMenu.querySelectorAll("img");
-newMenuImg[1].src = "https://pbs.twimg.com/media/FuKqQWLakAIzLMV.jpg";
+  const newMenuName = newMenu.querySelector("header > h2");
+  newMenuName.innerText = addedName;
 
-menuWrapper.appendChild(newMenu);
+  const newMenuHashtagWrapper = newMenu.querySelector(".menu__hashtag > ul");
+  const originalHashtagList = newMenuHashtagWrapper.querySelectorAll("li");
+  originalHashtagList.forEach((item) => item.remove());
+
+  renderHashtags(addedHashtags, newMenuHashtagWrapper);
+
+  const newMenuImg = newMenu.querySelectorAll("img");
+  newMenuImg[1].src = "https://pbs.twimg.com/media/FuKqQWLakAIzLMV.jpg";
+
+  menuWrapper.appendChild(newMenu);
+}
 
 // 2. 카테고리 필터링 기능
 const categories = document.querySelectorAll(".category > li ");
@@ -61,9 +67,27 @@ const categoryCheckboxList = document.querySelectorAll(
 );
 const categoryTagWrapper = document.querySelector(".category__tag");
 
+const renderFilteredItems = (checkbox) => {
+  const categoryName = checkbox.parentNode.dataset.filter;
+  // 체크한 카테고리에 속한 메뉴만 보여주기
+  const filteredMenuItems =
+    categoryName === "all"
+      ? Array.from(menuItems)
+      : Array.from(menuItems).filter((el) =>
+          el.className.includes(categoryName)
+        );
+
+  if (checkbox.checked) {
+    filteredMenuItems.forEach((item) => (item.style.display = "flex"));
+  } else {
+    filteredMenuItems.forEach((item) => (item.style.display = "none"));
+  }
+};
+
 for (let i = 0; i < categories.length; i++) {
   categories[i].addEventListener("click", () => {
     categoryCheckboxList[i].checked = !categoryCheckboxList[i].checked;
+    renderFilteredItems(categoryCheckboxList[i]);
 
     if (categoryCheckboxList[i].checked) {
       const newCategoryTag = document.createElement("div");
@@ -78,26 +102,14 @@ for (let i = 0; i < categories.length; i++) {
       deleteCategoryBtn.addEventListener("click", () => {
         categoryCheckboxList[i].checked = !categoryCheckboxList[i].checked;
         deleteCategoryBtn.parentNode.remove();
+
+        renderFilteredItems(categoryCheckboxList[i]);
       });
 
       categoryTagWrapper.appendChild(newCategoryTag);
     }
   });
 }
-
-const renderFilteredItems = (checkboxList) => {
-  checkboxList.forEach((checkbox) => {
-    // 체크한 카테고리에 속한 메뉴만 보여주기
-
-    menuItems.forEach((menu) => {
-      if ((checkbox.checked = true)) {
-        menu.style.display = "flex";
-      } else {
-        menu.style.display = "none";
-      }
-    });
-  });
-};
 
 // 4. + 클릭시 전체 해시태그 보여주기
 const hashTagWrapperList = document.querySelectorAll(".menu__hashtag");

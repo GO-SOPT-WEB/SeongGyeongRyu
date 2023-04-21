@@ -13,7 +13,7 @@
   --color-hashtag-background: #fdd4d8;
 }
 
-@keyframes fade-in {
+@keyframes card-animation {
   0% {
     opacity: 0;
   }
@@ -222,7 +222,7 @@ nav > * {
   overflow: hidden;
   cursor: pointer;
 
-  animation: fade-in 0.5s ease-in-out;
+  animation: card-animation 0.5s ease-in-out;
 }
 
 .menu__item > .menu__hashtag {
