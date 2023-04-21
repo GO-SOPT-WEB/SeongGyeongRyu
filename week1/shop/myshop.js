@@ -56,17 +56,20 @@ menuWrapper.appendChild(newMenu);
 
 // 2. 카테고리 필터링 기능
 const categories = document.querySelectorAll(".category > li ");
+const categoryCheckboxList = document.querySelectorAll(
+  ".category > li > input"
+);
+console.log(categoryCheckboxList);
 const categoryTagWrapper = document.querySelector(".category__tag");
 
-categories.forEach((category) => {
-  category.addEventListener("click", () => {
-    const categoryCheckbox = category.querySelector("input");
-    categoryCheckbox.checked = !categoryCheckbox.checked;
+for (let i = 0; i < categories.length; i++) {
+  categories[i].addEventListener("click", () => {
+    categoryCheckboxList[i].checked = !categoryCheckboxList[i].checked;
 
-    if (categoryCheckbox.checked) {
+    if (categoryCheckboxList[i].checked) {
       const newCategoryTag = document.createElement("div");
-      newCategoryTag.innerText = category.innerText;
-      newCategoryTag.className = category.dataset.filter;
+      newCategoryTag.innerText = categories[i].innerText;
+      newCategoryTag.className = categories[i].dataset.filter;
 
       const deleteCategoryBtn = document.createElement("button");
       deleteCategoryBtn.type = "button";
@@ -74,18 +77,28 @@ categories.forEach((category) => {
       newCategoryTag.appendChild(deleteCategoryBtn);
 
       deleteCategoryBtn.addEventListener("click", () => {
-        categoryCheckbox.checked = !categoryCheckbox.checked;
+        categoryCheckboxList[i].checked = !categoryCheckboxList[i].checked;
         deleteCategoryBtn.parentNode.remove();
       });
 
       categoryTagWrapper.appendChild(newCategoryTag);
     }
   });
-});
+}
 
-const renderFilteredMenus = () => {};
+const renderFilteredItems = (checkboxList) => {
+  checkboxList.forEach((checkbox) => {
+    // 체크한 카테고리에 속한 메뉴만 보여주기
 
-// 3. 카테고리 선택 시 카드섹션 위에 선택한 카테고리 보여주기
+    menuItems.forEach((menu) => {
+      if ((checkbox.checked = true)) {
+        menu.style.display = "flex";
+      } else {
+        menu.style.display = "none";
+      }
+    });
+  });
+};
 
 // 4. + 클릭시 전체 해시태그 보여주기
 const hashTagWrapperList = document.querySelectorAll(".menu__hashtag");
