@@ -59,7 +59,6 @@ const categories = document.querySelectorAll(".category > li ");
 const categoryCheckboxList = document.querySelectorAll(
   ".category > li > input"
 );
-console.log(categoryCheckboxList);
 const categoryTagWrapper = document.querySelector(".category__tag");
 
 for (let i = 0; i < categories.length; i++) {
@@ -124,7 +123,6 @@ for (let i = 0; i < hashTagWrapperList.length; i++) {
           allHashTagWrapper.appendChild(hashtagItem);
         });
       } else {
-        //removeChild로 캐싱하는 방법 생각해보기
         while (allHashTagWrapper.firstChild) {
           allHashTagWrapper.firstChild.remove();
         }
