@@ -5,7 +5,7 @@ const menuWrapper = document.querySelector(".menu__wrapper");
 const menuItems = document.querySelectorAll(".menu__item");
 
 const renderHashtags = (hashtags, wrapper) => {
-  hashtags.forEach((el) => {
+  hashtags?.forEach((el) => {
     const hashtagItem = document.createElement("li");
     hashtagItem.className = "menu__hashtag__detail";
     hashtagItem.innerText = el;
@@ -32,14 +32,13 @@ for (let i = 0; i < menuItems.length; i++) {
 
   renderHashtags(shopData[i].hashtags, menuHashtags);
 
-  menuItems[i].classList += " " + shopData[i].category;
+  menuItems[i].dataset.category = shopData[i].category;
 }
 
 //1-1. 로컬스토리지에 추가된 아이템 있으면 그것도 보여주기
 const addedMenu = JSON.parse(localStorage.getItem("newMenu"));
 
 if (addedMenu) {
-  console.log("Hi");
   const { addedCategory, addedName, addedHashtags } = addedMenu;
 
   const newMenu = menuItems[0].cloneNode(true);
@@ -61,55 +60,65 @@ if (addedMenu) {
 }
 
 // 2. 카테고리 필터링 기능
-const categories = document.querySelectorAll(".category > li ");
-const categoryCheckboxList = document.querySelectorAll(
-  ".category > li > input"
-);
+const categoryBtnList = document.querySelectorAll(".category > li ");
+const checkboxList = document.querySelectorAll(".category > li > input");
 const categoryTagWrapper = document.querySelector(".category__tag");
+let checkedCategoryList = [];
 
-const renderFilteredItems = (checkbox) => {
-  const categoryName = checkbox.parentNode.dataset.filter;
-  // 체크한 카테고리에 속한 메뉴만 보여주기
-  const filteredMenuItems =
-    categoryName === "all"
-      ? Array.from(menuItems)
-      : Array.from(menuItems).filter((el) =>
-          el.className.includes(categoryName)
-        );
+const renderFilteredTag = (tagBtn) => {
+  const newCategoryTag = document.createElement("div");
+  newCategoryTag.innerText = tagBtn.innerText;
 
-  if (checkbox.checked) {
-    filteredMenuItems.forEach((item) => (item.style.display = "flex"));
-  } else {
-    filteredMenuItems.forEach((item) => (item.style.display = "none"));
-  }
+  const deleteCategoryBtn = document.createElement("button");
+  deleteCategoryBtn.type = "button";
+  deleteCategoryBtn.innerText = "❎";
+  deleteCategoryBtn.dataset.category = tagBtn.dataset.filter;
+  newCategoryTag.appendChild(deleteCategoryBtn);
+
+  deleteCategoryBtn.addEventListener("click", () => {
+    const checkbox = tagBtn.querySelector("input");
+    checkbox.checked = !checkbox.checked;
+
+    checkedCategoryList = checkedCategoryList.filter(
+      (category) => category !== deleteCategoryBtn.dataset.category
+    );
+
+    deleteCategoryBtn.parentNode.remove();
+    filteredMenuItems();
+  });
+
+  categoryTagWrapper.appendChild(newCategoryTag);
 };
 
-for (let i = 0; i < categories.length; i++) {
-  categories[i].addEventListener("click", () => {
-    categoryCheckboxList[i].checked = !categoryCheckboxList[i].checked;
-    renderFilteredItems(categoryCheckboxList[i]);
+const filteredMenuItems = () => {
+  if (checkedCategoryList.includes("all")) {
+    menuItems.forEach((menu) => {
+      menu.style.display = "flex";
+    });
+    return;
+  }
 
-    if (categoryCheckboxList[i].checked) {
-      const newCategoryTag = document.createElement("div");
-      newCategoryTag.innerText = categories[i].innerText;
-      newCategoryTag.className = categories[i].dataset.filter;
-
-      const deleteCategoryBtn = document.createElement("button");
-      deleteCategoryBtn.type = "button";
-      deleteCategoryBtn.innerText = "❎";
-      newCategoryTag.appendChild(deleteCategoryBtn);
-
-      deleteCategoryBtn.addEventListener("click", () => {
-        categoryCheckboxList[i].checked = !categoryCheckboxList[i].checked;
-        deleteCategoryBtn.parentNode.remove();
-
-        renderFilteredItems(categoryCheckboxList[i]);
-      });
-
-      categoryTagWrapper.appendChild(newCategoryTag);
-    }
+  menuItems.forEach((menu) => {
+    if (checkedCategoryList.includes(menu.dataset["category"]))
+      menu.style.display = "flex";
+    else menu.style.display = "none";
   });
-}
+};
+
+categoryBtnList.forEach((btn, idx) => {
+  btn.addEventListener("click", () => {
+    checkboxList[idx].checked = !checkboxList[idx].checked;
+    if (checkboxList[idx].checked) {
+      checkedCategoryList.push(btn.dataset.filter);
+      renderFilteredTag(btn);
+    } else {
+      checkedCategoryList = checkedCategoryList.filter(
+        (category) => category !== btn.innerText
+      );
+    }
+    filteredMenuItems();
+  });
+});
 
 // 4. + 클릭시 전체 해시태그 보여주기
 const hashTagWrapperList = document.querySelectorAll(".menu__hashtag");
