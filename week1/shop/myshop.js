@@ -16,7 +16,6 @@ const renderHashtags = (hashtags, wrapper) => {
 for (let i = 0; i < menuItems.length; i++) {
   const menuName = menuItems[i].getElementsByTagName("h2")[0];
   const menuHashtags = menuItems[i].getElementsByTagName("ul")[0];
-
   const menuImg = menuItems[i].getElementsByTagName("img")[1];
 
   menuName.innerText = shopData[i].name;
@@ -39,7 +38,7 @@ for (let i = 0; i < menuItems.length; i++) {
 const addedMenu = JSON.parse(localStorage.getItem("newMenu"));
 
 if (addedMenu) {
-  const { addedCategory, addedName, addedHashtags } = addedMenu;
+  const { addedName, addedHashtags } = addedMenu;
 
   const newMenu = menuItems[0].cloneNode(true);
   newMenu.className = "menu__item";
@@ -84,13 +83,13 @@ const renderFilteredTag = (tagBtn) => {
     );
 
     deleteCategoryBtn.parentNode.remove();
-    filteredMenuItems();
+    filterMenuItems();
   });
 
   categoryTagWrapper.appendChild(newCategoryTag);
 };
 
-const filteredMenuItems = () => {
+const filterMenuItems = () => {
   if (checkedCategoryList.includes("all")) {
     menuItems.forEach((menu) => {
       menu.style.display = "flex";
@@ -105,18 +104,22 @@ const filteredMenuItems = () => {
   });
 };
 
+const handleCategoryBtn = () => {
+  checkboxList[idx].checked = !checkboxList[idx].checked;
+  if (checkboxList[idx].checked) {
+    checkedCategoryList.push(btn.dataset.filter);
+    renderFilteredTag(btn);
+  } else {
+    checkedCategoryList = checkedCategoryList.filter(
+      (category) => category !== btn.innerText
+    );
+  }
+};
+
 categoryBtnList.forEach((btn, idx) => {
   btn.addEventListener("click", () => {
-    checkboxList[idx].checked = !checkboxList[idx].checked;
-    if (checkboxList[idx].checked) {
-      checkedCategoryList.push(btn.dataset.filter);
-      renderFilteredTag(btn);
-    } else {
-      checkedCategoryList = checkedCategoryList.filter(
-        (category) => category !== btn.innerText
-      );
-    }
-    filteredMenuItems();
+    handleCategoryBtn();
+    filterMenuItems();
   });
 });
 
@@ -126,29 +129,33 @@ const allHashTagWrapper = document.createElement("ul");
 const moreHashtagBtn = document.querySelectorAll(".menu__hashtag > button");
 allHashTagWrapper.className = "menu_allHashtag";
 
+const handleMoreHashtag = (wrapper, flag) => {
+  flag = !flag;
+
+  if (flag) {
+    wrapper.className = "menu_allHashtag";
+    menuItems[i].prepend(wrapper);
+
+    shopData[i].hashtags.forEach((el) => {
+      const hashtagItem = document.createElement("li");
+      hashtagItem.innerText = el;
+      wrapper.appendChild(hashtagItem);
+    });
+  } else {
+    while (wrapper.firstChild) {
+      wrapper.firstChild.remove();
+    }
+    wrapper.remove();
+  }
+};
+
 for (let i = 0; i < hashTagWrapperList.length; i++) {
   const allHashTagWrapper = document.createElement("ul");
-  let hashTagOpenFlag = true;
+  let isMoreHashtagOpen = true;
 
   for (let i = 0; i < moreHashtagBtn.length; i++) {
-    moreHashtagBtn[i].addEventListener("click", () => {
-      hashTagOpenFlag = !hashTagOpenFlag;
-
-      if (hashTagOpenFlag) {
-        allHashTagWrapper.className = "menu_allHashtag";
-        menuItems[i].prepend(allHashTagWrapper);
-
-        shopData[i].hashtags.forEach((el) => {
-          const hashtagItem = document.createElement("li");
-          hashtagItem.innerText = el;
-          allHashTagWrapper.appendChild(hashtagItem);
-        });
-      } else {
-        while (allHashTagWrapper.firstChild) {
-          allHashTagWrapper.firstChild.remove();
-        }
-        allHashTagWrapper.remove();
-      }
-    });
+    moreHashtagBtn[i].addEventListener("click", () =>
+      handleMoreHashtag(allHashTagWrapper, isMoreHashtagOpen)
+    );
   }
 }
