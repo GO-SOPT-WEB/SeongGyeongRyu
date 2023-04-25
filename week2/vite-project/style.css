@@ -166,6 +166,7 @@ header {
   height: 10rem;
 
   color: var(--color-title);
+
   font-size: 5rem;
   text-shadow: 0.5rem 0.5rem 0.5rem var(--color-shadow);
 }
@@ -178,7 +179,6 @@ main {
   row-gap: 2rem;
 
   position: relative;
-
   width: 100%;
 }
 .modal {
@@ -208,7 +208,6 @@ dialog > form {
   display: flex;
   flex-direction: column;
   align-items: center;
-
   gap: 3rem;
 
   width: 80%;
@@ -281,10 +280,9 @@ dialog > form > input {
 .todo__category {
   display: flex;
   flex-direction: column;
+  row-gap: 0.5rem;
 
   width: 45%;
-
-  row-gap: 0.5rem;
 }
 
 .todo__category__tag {
@@ -306,10 +304,11 @@ dialog > form > input {
   text-align: center;
   line-height: 1;
 
+  color: white;
+
   border: none;
   border-radius: 1rem;
   background-color: black;
-  color: white;
 
   cursor: pointer;
 }
@@ -374,17 +373,17 @@ dialog > form > input {
   justify-content: center;
   align-items: center;
   row-gap: 1rem;
-
   padding: 1rem;
 
   width: 20%;
   height: 80%;
 
+  font-size: 2.2rem;
+
   border: none;
   border-radius: 5rem;
   background-color: var(--color-footer);
   box-shadow: 0.5rem 0.5rem var(--color-shadow);
-  font-size: 2.2rem;
 
   cursor: pointer;
 }
