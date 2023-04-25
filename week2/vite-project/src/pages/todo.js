@@ -87,7 +87,7 @@ function Todo($container) {
 
   const todoWrapper = document.querySelector(".todos");
 
-  const addTodoItem = (category, todo) => {
+  const handleRenderTodoItem = (category, todo) => {
     const todoContent = document.createElement("div");
     todoContent.className = "todo__content";
     todoContent.innerText = todo;
@@ -127,7 +127,7 @@ function Todo($container) {
     todoCategoryTag.appendChild(addTodoBtn);
 
     item.todoList.forEach((todo) => {
-      addTodoItem(todoCategory, todo);
+      handleRenderTodoItem(todoCategory, todo);
     });
 
     todoWrapper.appendChild(todoCategory);
@@ -135,7 +135,7 @@ function Todo($container) {
 
   // 2. 하트 안의 숫자 계산하기 - querySelector가 클래스 명 안에 있는 공백을 인식하지 못함
 
-  const countTodo = () => {
+  const handleCountTodo = () => {
     const todoCntWrapper = document.getElementsByClassName(
       "calendar__day today"
     );
@@ -147,20 +147,24 @@ function Todo($container) {
     todoCnt.innerText = allTodoList;
   };
 
-  countTodo();
+  handleCountTodo();
 
   // 3. 할 일 완료 시 개수 줄어들도록 처리
   const todoIconList = document.querySelectorAll(".todo__content > img");
 
+  const handleTodoDone = () => {
+    if (todoIcon.parentNode.className === "todo__content") {
+      todoIcon.parentNode.classList.add("done");
+      todoIcon.className = "todo-done";
+    } else {
+      todoIcon.parentNode.classList.remove("done");
+      todoIcon.className = null;
+    }
+  };
+
   todoIconList.forEach((todoIcon) => {
     todoIcon.addEventListener("click", () => {
-      if (todoIcon.parentNode.className === "todo__content") {
-        todoIcon.parentNode.classList.add("done");
-        todoIcon.className = "todo-done";
-      } else {
-        todoIcon.parentNode.classList.remove("done");
-        todoIcon.className = null;
-      }
+      handleTodoDone();
       countTodo();
     });
   });
@@ -173,20 +177,19 @@ function Todo($container) {
   const addTodoForm = document.querySelector(".modal > form");
   const addTodoInput = addTodoForm.querySelector('input[name="addTodo"]');
   const categoryList = document.querySelectorAll(".todo__category__tag");
+  //상수배열에서 todoList 배열만 가져와서 그 배열을 하나로 합치는 코드!
   const currentAllTodo = todoInfo.map((item) => item.todoList).flat();
   let addedTodoCategory = null;
 
-  addTodoBtnList.forEach((btn) => {
-    btn.addEventListener("click", () => {
-      document.body.style.backgroundColor = "rgba(0, 0, 0, 0.5)";
-      addTodoModal.classList.add("open");
-      addTodoInput.focus();
-      addedTodoCategory = btn.parentNode.innerText.slice(0, -1).trim();
-    });
-  });
+  const handleFormOpen = () => {
+    //모달 떴을 때 뒷 배경 반투명한 검정으로!
+    document.body.style.backgroundColor = "rgba(0, 0, 0, 0.5)";
+    addTodoModal.classList.add("open");
+    addTodoInput.focus();
+    addedTodoCategory = btn.parentNode.innerText.slice(0, -1).trim();
+  };
 
-  addTodoForm.addEventListener("submit", (e) => {
-    e.preventDefault();
+  const handleAddTodo = () => {
     document.body.style.backgroundColor = "#fdf1bb";
     addTodoModal.classList.remove("open");
 
@@ -204,6 +207,15 @@ function Todo($container) {
       );
       addTodoItem(addTodoCategory.parentNode, newTodo);
     }
+  };
+
+  addTodoBtnList.forEach((btn) => {
+    btn.addEventListener("click", handleFormOpen());
+  });
+
+  addTodoForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    handleAddTodo();
   });
 }
 
