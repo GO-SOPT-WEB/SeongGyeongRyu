@@ -34,7 +34,7 @@ const menuHashtagInput = document.querySelector("#menu__hashtag");
 const menuPictureInput = document.querySelector("#menu__pic");
 const menuCategorySelect = document.querySelector("#menu__category");
 
-const onMenuSubmit = (event) => {
+const handleMenuSubmit = (event) => {
   event.preventDefault();
 
   const menuName = menuNameInput.value;
@@ -52,4 +52,4 @@ const onMenuSubmit = (event) => {
   );
 };
 
-menuForm.addEventListener("submit", onMenuSubmit);
+menuForm.addEventListener("submit", handleMenuSubmit);

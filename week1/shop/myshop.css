@@ -148,8 +148,9 @@ nav > * {
 .category {
   display: flex;
   flex-direction: column;
-  width: 90%;
   gap: 1rem;
+
+  width: 90%;
 }
 
 .category > li {
@@ -204,6 +205,7 @@ nav > * {
 .category__tag > div > button {
   border: none;
   background-color: transparent;
+
   cursor: pointer;
 }
 

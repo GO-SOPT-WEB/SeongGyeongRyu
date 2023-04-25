@@ -4,7 +4,7 @@ import { shopData } from "./shopData.js";
 const menuWrapper = document.querySelector(".menu__wrapper");
 const menuItems = document.querySelectorAll(".menu__item");
 
-const renderHashtags = (hashtags, wrapper) => {
+const handleRenderHashtags = (hashtags, wrapper) => {
   hashtags?.forEach((el) => {
     const hashtagItem = document.createElement("li");
     hashtagItem.className = "menu__hashtag__detail";
@@ -29,7 +29,7 @@ for (let i = 0; i < menuItems.length; i++) {
     menuHashtags.appendChild(hashtagItem);
   });
 
-  renderHashtags(shopData[i].hashtags, menuHashtags);
+  handleRenderHashtags(shopData[i].hashtags, menuHashtags);
 
   menuItems[i].dataset.category = shopData[i].category;
 }
@@ -50,7 +50,7 @@ if (addedMenu) {
   const originalHashtagList = newMenuHashtagWrapper.querySelectorAll("li");
   originalHashtagList.forEach((item) => item.remove());
 
-  renderHashtags(addedHashtags, newMenuHashtagWrapper);
+  handleRenderHashtags(addedHashtags, newMenuHashtagWrapper);
 
   const newMenuImg = newMenu.querySelectorAll("img");
   newMenuImg[1].src = "https://pbs.twimg.com/media/FuKqQWLakAIzLMV.jpg";
@@ -64,7 +64,7 @@ const checkboxList = document.querySelectorAll(".category > li > input");
 const categoryTagWrapper = document.querySelector(".category__tag");
 let checkedCategoryList = [];
 
-const renderFilteredTag = (tagBtn) => {
+const handleRenderFilteredTag = (tagBtn) => {
   const newCategoryTag = document.createElement("div");
   newCategoryTag.innerText = tagBtn.innerText;
 
@@ -83,13 +83,13 @@ const renderFilteredTag = (tagBtn) => {
     );
 
     deleteCategoryBtn.parentNode.remove();
-    filterMenuItems();
+    handleFilterMenuItems();
   });
 
   categoryTagWrapper.appendChild(newCategoryTag);
 };
 
-const filterMenuItems = () => {
+const handleFilterMenuItems = () => {
   if (checkedCategoryList.includes("all")) {
     menuItems.forEach((menu) => {
       menu.style.display = "flex";
@@ -108,7 +108,7 @@ const handleCategoryBtn = () => {
   checkboxList[idx].checked = !checkboxList[idx].checked;
   if (checkboxList[idx].checked) {
     checkedCategoryList.push(btn.dataset.filter);
-    renderFilteredTag(btn);
+    handleRenderFilteredTag(btn);
   } else {
     checkedCategoryList = checkedCategoryList.filter(
       (category) => category !== btn.innerText
@@ -119,7 +119,7 @@ const handleCategoryBtn = () => {
 categoryBtnList.forEach((btn, idx) => {
   btn.addEventListener("click", () => {
     handleCategoryBtn();
-    filterMenuItems();
+    handleFilterMenuItems();
   });
 });
 
