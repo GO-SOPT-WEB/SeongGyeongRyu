@@ -145,7 +145,17 @@ ${reset}
 }
   
 * {
+    font-family: 'ONE-Mobile-POP';
     box-sizing: border-box;
+    background-color : #D4DAE6;
 }
+
+@font-face {
+  font-family: 'ONE-Mobile-POP';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/ONE-Mobile-POP.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
 `;
 export default GlobalStyle;
