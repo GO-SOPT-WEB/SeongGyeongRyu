@@ -1,5 +1,5 @@
-import React, { useEffect, useMemo, useState } from "react";
-import styled from "styled-components";
+import { useEffect, useMemo, useState } from "react";
+import styled, { css } from "styled-components";
 import LevelBtn from "../component/LevelBtn";
 import ModalPortal from "../component/ModalPortal";
 import QuizCard from "../component/QuizCard";
@@ -10,6 +10,7 @@ import { CardContext } from "../contexts/cardContext";
 
 const Quiz = () => {
   const levelList = quizList.map((item: quizInfo) => item.level);
+
   const [level, setLevel] = useState(0);
   const [currentScore, setCurrentScore] = useState(0);
   const [isCardsFlipped, setIsCardsFlipped] = useState<boolean[]>(
@@ -17,9 +18,10 @@ const Quiz = () => {
   );
   const [chosen, setChosen] = useState<number[]>([]);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [isScoreBlinking, setIsScoreBlinking] = useState<boolean>(false);
 
   const handleCloseModal = () => {
-    setIsModalOpen(true);
+    setIsModalOpen((prev) => !prev);
   };
 
   const handleRandomQuizList = (quizList: quizInfo) => {
@@ -53,6 +55,7 @@ const Quiz = () => {
   useEffect(() => {
     setChosen([]);
     setIsCardsFlipped([]);
+    setCurrentScore(0);
   }, [level]);
 
   //setChosen 함수는 비동기적으로 작동하기 때문에
@@ -67,6 +70,10 @@ const Quiz = () => {
   }, [chosen]);
 
   useEffect(() => {
+    setIsScoreBlinking(true);
+    setTimeout(() => {
+      setIsScoreBlinking(false);
+    }, 3000);
     if (currentScore === quizList[level].totalScore) {
       setIsModalOpen((prev) => !prev);
     }
@@ -86,7 +93,7 @@ const Quiz = () => {
   return (
     <>
       <CardContext.Provider value={{ isCardsFlipped, setIsCardsFlipped }}>
-        <StHeader>
+        <StHeader isBlinking={isScoreBlinking}>
           <RestartBtn handleRestart={() => window.location.reload()} />
           🦊 매튜를 맞춰보아요 🦊
           <p>
@@ -120,7 +127,10 @@ const Quiz = () => {
         </StQuizWrapper>
         {isModalOpen && (
           <ModalPortal>
-            <SuccessModal level={level} handleClick={handleCloseModal} />
+            <SuccessModal
+              level={level}
+              handleClick={() => handleCloseModal()}
+            />
           </ModalPortal>
         )}
       </CardContext.Provider>
@@ -128,7 +138,7 @@ const Quiz = () => {
   );
 };
 
-const StHeader = styled.header`
+const StHeader = styled.header<{ isBlinking: boolean }>`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -141,6 +151,12 @@ const StHeader = styled.header`
   font-size: 4rem;
   background-color: skyblue;
 
+  @keyframes blink-effect {
+    50% {
+      opacity: 0;
+    }
+  }
+
   > p {
     position: absolute;
     right: 2rem;
@@ -148,6 +164,18 @@ const StHeader = styled.header`
 
     font-size: 2.5rem;
     background-color: yellow;
+
+    ${({ isBlinking }) =>
+      isBlinking &&
+      css`
+        animation: blink-effect 1s step-end infinite;
+      `}
+  }
+
+  > button {
+    position: absolute;
+    left: 2rem;
+    bottom: 2.5rem;
   }
 `;
 
