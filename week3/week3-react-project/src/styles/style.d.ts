@@ -3,7 +3,9 @@ import "styled-components";
 declare module "styled-components" {
   export interface DefaultTheme {
     colors: {
-      Pic_Color_Coral: string;
+      Matt_Quiz_Blue: string;
+      Matt_Quiz_Purple: string;
+      Matt_Quiz_Yellow: string;
     };
   }
 }

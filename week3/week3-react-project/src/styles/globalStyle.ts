@@ -140,15 +140,13 @@ export const reset = css`
 
 export const GlobalStyle = createGlobalStyle`
 ${reset}
-.notosanskr * { 
- font-family: 'Noto Sans KR';
-}
   
 * {
     font-family: 'ONE-Mobile-POP';
     box-sizing: border-box;
     background-color : #D4DAE6;
 }
+
 
 @font-face {
   font-family: 'ONE-Mobile-POP';

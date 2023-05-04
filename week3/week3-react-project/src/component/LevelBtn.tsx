@@ -31,7 +31,7 @@ const StLevelBtn = styled.button`
 
   border: none;
   border-radius: 2rem;
-  background-color: ${({ theme }) => theme.colors.Matt_Quiz_Btn_Blue};
+  background-color: ${({ theme }) => theme.colors.Matt_Quiz_Blue};
 
   box-shadow: 0.2rem 0.2rem 0.2rem 0.2rem gray;
 

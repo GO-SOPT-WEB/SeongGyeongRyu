@@ -36,11 +36,10 @@ const StButtonWrapper = styled.button<{ isLevelBtn: boolean }>`
   ${({ isLevelBtn }) =>
     isLevelBtn
       ? css`
-          background-color: ${({ theme }) => theme.colors.Matt_Quiz_Btn_Blue};
+          background-color: ${({ theme }) => theme.colors.Matt_Quiz_Blue};
         `
       : css`
-          background-color: ${({ theme }) =>
-            theme.colors.Matt_Quiz_Restart_Purple};
+          background-color: ${({ theme }) => theme.colors.Matt_Quiz_Purple};
         `}
 
   :hover {
