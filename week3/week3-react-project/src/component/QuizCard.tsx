@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
 import { Default_Img } from "../assets";
 import { CardContext } from "../contexts/cardContext";
@@ -14,7 +14,7 @@ const QuizCard = (props: QuizCardProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const { isCardsFlipped, setIsCardsFlipped } = useContext(CardContext);
 
-  const handleFlipCard = (e: React.MouseEvent<HTMLElement>) => {
+  const handleFlipCard = () => {
     handleClick?.();
 
     const isCardsFlippedArr = isCardsFlipped.filter((el) => el === true);
@@ -32,7 +32,7 @@ const QuizCard = (props: QuizCardProps) => {
 
   return (
     <>
-      <StQuizCard onClick={(e) => handleFlipCard(e)}>
+      <StQuizCard onClick={() => handleFlipCard()}>
         <div className={isOpen ? "clicked" : " "}>
           <StCardFront src={Default_Img}></StCardFront>
           <StCardBack src={quizImgSrc}></StCardBack>
