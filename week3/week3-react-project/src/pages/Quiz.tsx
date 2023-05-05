@@ -61,6 +61,10 @@ const Quiz = () => {
   //setChosen 함수는 비동기적으로 작동하기 때문에
   //handleCheckPair 함수에서 chosen 배열의 값이 업데이트되기 전의 값을 가지고 실행됨
   useEffect(() => {
+    if (chosen.length > 2) {
+      console.log(chosen);
+    }
+
     if (chosen.length === 2) {
       setTimeout(() => {
         handleCheckPair(chosen);
@@ -70,14 +74,23 @@ const Quiz = () => {
   }, [chosen]);
 
   useEffect(() => {
-    setIsScoreBlinking(true);
+    setIsScoreBlinking((prev) => !prev);
     setTimeout(() => {
-      setIsScoreBlinking(false);
+      setIsScoreBlinking((prev) => !prev);
     }, 3000);
+
     if (currentScore === quizList[level].totalScore) {
       setIsModalOpen((prev) => !prev);
     }
   }, [currentScore]);
+
+  const handleClick = (idx: number) => {
+    if (chosen.length < 2) {
+      setChosen((prev) => [...prev, idx]);
+    } else {
+      return;
+    }
+  };
 
   const handleCheckPair = (chosen: number[]) => {
     if (randomQuizList[chosen[0]] === randomQuizList[chosen[1]]) {
@@ -120,7 +133,7 @@ const Quiz = () => {
                 key={idx}
                 quizImgSrc={item}
                 order={idx}
-                handleClick={() => setChosen((prev) => [...prev, idx])}
+                handleClick={() => handleClick(idx)}
               />
             ))}
           </section>

@@ -21,3 +21,5 @@ export { default as Hard_6 } from "./Matt_Hard_6.jpeg";
 export { default as Hard_7 } from "./Matt_Hard_7.jpeg";
 export { default as Hard_8 } from "./Matt_Hard_8.jpeg";
 export { default as Hard_9 } from "./Matt_Hard_9.webp";
+
+export { default as Default_Img } from "./Default.png";

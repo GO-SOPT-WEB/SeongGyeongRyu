@@ -5,7 +5,7 @@ import { CardContext } from "../contexts/cardContext";
 
 export interface QuizCardProps {
   quizImgSrc?: string;
-  handleClick: () => void;
+  handleClick: (() => void) | null;
   order: number;
 }
 
@@ -15,8 +15,10 @@ const QuizCard = (props: QuizCardProps) => {
   const { isCardsFlipped, setIsCardsFlipped } = useContext(CardContext);
 
   const handleFlipCard = (e: React.MouseEvent<HTMLElement>) => {
-    handleClick();
-    const flippedCard = isCardsFlipped.filter((el) => el === true);
+    handleClick?.();
+
+    const isCardsFlippedArr = isCardsFlipped.filter((el) => el === true);
+    if (isCardsFlippedArr.length >= 2) return;
 
     if (!isCardsFlipped[order]) {
       console.log(e.currentTarget, order);

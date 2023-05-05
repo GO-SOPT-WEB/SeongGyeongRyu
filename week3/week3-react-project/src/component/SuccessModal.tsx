@@ -28,7 +28,7 @@ const StModalWrapper = styled.dialog`
   justify-content: center;
   align-items: center;
 
-  width: 40rem;
+  width: 43rem;
   height: 30rem;
   position: absolute;
   top: 50%;
