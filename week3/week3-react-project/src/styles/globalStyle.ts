@@ -147,6 +147,20 @@ ${reset}
     background-color : #D4DAE6;
 }
 
+#modal-root {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+
+  top: 0;
+  left: 0;
+
+  display : flex;
+  justify-content:center;
+  align-items: center;
+
+  background-color: transparent;
+}
 
 @font-face {
   font-family: 'ONE-Mobile-POP';

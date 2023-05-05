@@ -30,10 +30,6 @@ const StModalWrapper = styled.dialog`
 
   width: 43rem;
   height: 30rem;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
 
   background: none;
 
