@@ -128,6 +128,7 @@ const Quiz = () => {
                 key={idx}
                 quizImgSrc={item}
                 order={idx}
+                isTwoCardsOpen={isChecking}
                 handleClick={() => handleClick(idx)}
               />
             ))}
