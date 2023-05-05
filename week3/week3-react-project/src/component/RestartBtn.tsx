@@ -1,4 +1,3 @@
-import styled from "styled-components";
 import ButtonLayout from "../Layout/ButtonLayout";
 
 export interface RestartBtnProps {

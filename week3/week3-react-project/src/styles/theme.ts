@@ -1,4 +1,4 @@
-import { css, DefaultTheme } from "styled-components";
+import { DefaultTheme } from "styled-components";
 
 const colors = {
   Matt_Quiz_Blue: "#C4DEEE",

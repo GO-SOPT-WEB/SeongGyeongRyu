@@ -19,6 +19,7 @@ const Quiz = () => {
   const [chosen, setChosen] = useState<number[]>([]);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [isScoreBlinking, setIsScoreBlinking] = useState<boolean>(false);
+  const [isChecking, setIsChecking] = useState<boolean>(false);
 
   const handleCloseModal = () => {
     setIsModalOpen((prev) => !prev);
@@ -58,16 +59,12 @@ const Quiz = () => {
     setCurrentScore(0);
   }, [level]);
 
-  //setChosen 함수는 비동기적으로 작동하기 때문에
-  //handleCheckPair 함수에서 chosen 배열의 값이 업데이트되기 전의 값을 가지고 실행됨
   useEffect(() => {
-    if (chosen.length > 2) {
-      console.log(chosen);
-    }
-
     if (chosen.length === 2) {
+      setIsChecking((prev) => !prev);
       setTimeout(() => {
         handleCheckPair(chosen);
+        setIsChecking((prev) => !prev);
       }, 1000);
       setChosen([]);
     }
@@ -85,10 +82,8 @@ const Quiz = () => {
   }, [currentScore]);
 
   const handleClick = (idx: number) => {
-    if (chosen.length < 2) {
+    if (chosen.length < 2 && !isChecking) {
       setChosen((prev) => [...prev, idx]);
-    } else {
-      return;
     }
   };
 

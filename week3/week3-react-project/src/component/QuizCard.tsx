@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import { Default_Img } from "../assets";
 import { CardContext } from "../contexts/cardContext";
 
@@ -19,9 +19,7 @@ const QuizCard = (props: QuizCardProps) => {
 
     const isCardsFlippedArr = isCardsFlipped.filter((el) => el === true);
     if (isCardsFlippedArr.length >= 2) return;
-
     if (!isCardsFlipped[order]) {
-      console.log(e.currentTarget, order);
       const tempIsCardFlipped = [...isCardsFlipped];
       tempIsCardFlipped[order] = !tempIsCardFlipped[order];
       setIsCardsFlipped(tempIsCardFlipped);
