@@ -18,7 +18,6 @@ const QuizCard = (props: QuizCardProps) => {
     handleClick?.();
 
     const isCardsFlippedArr = isCardsFlipped.filter((el) => el === true);
-    if (isCardsFlippedArr.length >= 2) return;
     if (!isCardsFlipped[order]) {
       const tempIsCardFlipped = [...isCardsFlipped];
       tempIsCardFlipped[order] = !tempIsCardFlipped[order];
