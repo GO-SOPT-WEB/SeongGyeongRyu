@@ -17,37 +17,55 @@ const SuccessModal = (props: SucessModalProps) => {
 
   return (
     <StModalWrapper>
-      <button onClick={handleClick}>X</button>
-      {modalMsg}
+      <div>
+        <button onClick={handleClick}>X</button>
+        {modalMsg}
+      </div>
     </StModalWrapper>
   );
 };
 
 const StModalWrapper = styled.dialog`
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+
+  top: 0;
+  left: 0;
+
   display: flex;
   justify-content: center;
   align-items: center;
 
-  width: 43rem;
-  height: 30rem;
+  background-color: transparent;
 
-  background: none;
+  > div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
 
-  background-color: ${({ theme }) => theme.colors.Matt_Quiz_Yellow};
-  border-radius: 3rem;
-  border: none;
-
-  font-size: 3rem;
-
-  > button {
-    position: absolute;
-    top: 2rem;
-    right: 2rem;
-
-    font-size: 5rem;
+    width: 43rem;
+    height: 30rem;
 
     background: none;
+
+    background-color: ${({ theme }) => theme.colors.Matt_Quiz_Yellow};
+    border-radius: 3rem;
     border: none;
+
+    font-size: 3rem;
+
+    > button {
+      position: absolute;
+      top: 2rem;
+      right: 2rem;
+
+      font-size: 5rem;
+
+      background: none;
+      border: none;
+    }
   }
 `;
 
