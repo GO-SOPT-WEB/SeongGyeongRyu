@@ -1,10 +1,5 @@
-export interface WeatherInfo {
+export interface CommonWeatherInfo {
   name: string; // 지역이름
-  weather: [
-    {
-      description: string; // 날씨 설명
-    }
-  ];
   main: {
     temp: number; // 현재 온도
     feels_like: number; // 체감기온
@@ -15,6 +10,18 @@ export interface WeatherInfo {
     all: number; // 구름 %
   };
   dt_txt?: string; // 날짜
+}
+
+export interface WeatherInfo extends CommonWeatherInfo {
+  weather: [
+    {
+      description: string; // 날씨 설명
+    }
+  ];
+}
+
+export interface DailyWeatherInfo extends CommonWeatherInfo {
+  weatherImg: string;
 }
 
 export interface GetFiveDayWeatherInfo {
