@@ -4,17 +4,19 @@ import styled from "styled-components";
 import { WEATHER_TYPE } from "../../constants/weatherImg";
 import { useGetDailyWeatherData } from "../../lib/hooks/useGetDailyWeatherData";
 import Error404 from "../../Pages/Error404";
-import { DailyWeatherInfo } from "../../types/weather";
+import { WeatherInfoToRender } from "../../types/weather";
 import WeatherCard from "../atom/WeatherCard";
+import WeatherCardSkeleton from "../skeleton/WeatherCardSkeleton";
 
 const DailyWeather = () => {
   const { area } = useParams();
-  const [detailWeatherInfo, setDetailWeatherInfo] = useState<DailyWeatherInfo>({
-    name: "",
-    main: { temp: 0, feels_like: 0, temp_min: 0, temp_max: 0 },
-    clouds: { all: 100 },
-    weatherImg: "",
-  });
+  const [detailWeatherInfo, setDetailWeatherInfo] =
+    useState<WeatherInfoToRender>({
+      name: "",
+      main: { temp: 0, feels_like: 0, temp_min: 0, temp_max: 0 },
+      clouds: { all: 100 },
+      weatherImg: "",
+    });
 
   const { isLoading, isError, getData } = useGetDailyWeatherData();
 
@@ -49,20 +51,24 @@ const DailyWeather = () => {
     }
   }, [area]);
 
+  if (isLoading) return <WeatherCardSkeleton />;
   if (isError) return <Error404 />;
 
   return (
     <>
       <StWrapper>
-        <WeatherCard weatherCardInfo={detailWeatherInfo as DailyWeatherInfo} />
+        <WeatherCard
+          isDaily={true}
+          weatherCardInfo={detailWeatherInfo as WeatherInfoToRender}
+        />
       </StWrapper>
     </>
   );
 };
 
 const StWrapper = styled.main`
-  width :100%;
-  display:flex;
-  justify-content;
+  width: 100%;
+  display: flex;
+  justify-content: center;
 `;
 export default DailyWeather;
