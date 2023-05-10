@@ -140,7 +140,16 @@ export const reset = css`
 
 export const GlobalStyle = createGlobalStyle`
 ${reset}
+
+@font-face {
+    font-family: 'TmoneyRoundWindExtraBold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-07@1.0/TmoneyRoundWindExtraBold.woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
 #root, body, html {
+    font-family: 'TmoneyRoundWindExtraBold';
     height: 100vh;
     margin: 0 auto;
     overflow-y: auto;
