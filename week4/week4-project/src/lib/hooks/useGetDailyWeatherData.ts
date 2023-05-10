@@ -18,6 +18,7 @@ export const useGetDailyWeatherData = () => {
           import.meta.env.VITE_APP_WEATHER
         }&units=metric`
       );
+
       return res.data;
     } catch (error) {
       setIsError(true);
