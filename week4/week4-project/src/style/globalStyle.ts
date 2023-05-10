@@ -148,13 +148,17 @@ ${reset}
     font-style: normal;
 }
 
-#root, body, html {
+* {
     font-family: 'TmoneyRoundWindExtraBold';
+}
+
+#root, body, html {
     height: 100vh;
     margin: 0 auto;
     overflow-y: auto;
     -ms-overflow-style: none; /* 인터넷 익스플로러 */
     scrollbar-width: none; /* 파이어폭스 */
+
 }
 #root::-webkit-scrollbar {
     display: none; /* 크롬, 사파리, 오페라, 엣지 */

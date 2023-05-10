@@ -6,6 +6,7 @@ declare module "styled-components" {
       Weather_Card_Blue: string;
       Weather_Header_Blue: string;
       Weather_Text_White: string;
+      Weather_Btn_Blue: string;
     };
   }
 }
