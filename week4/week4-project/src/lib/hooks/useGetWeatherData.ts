@@ -1,9 +1,7 @@
 import { client } from "../axios";
-import { AxiosResponse } from "axios";
-import { WeatherInfo } from "../../types/weather";
 import { useState } from "react";
 
-export const useGetDailyWeatherData = () => {
+export const useGetWeatherData = (checkNum: number) => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isError, setIsError] = useState<boolean>(false);
 
@@ -13,11 +11,17 @@ export const useGetDailyWeatherData = () => {
   const getData = async (area: string) => {
     setIsLoading(true);
     try {
-      const res = await client.get(
-        `/weather?q=${area}&appid=${
+      let apiAddress = ``;
+      if (checkNum) {
+        apiAddress = `/forecast?q=${area}&appid=${
           import.meta.env.VITE_APP_WEATHER
-        }&units=metric`
-      );
+        }&units=metric`;
+      } else {
+        apiAddress = `/weather?q=${area}&appid=${
+          import.meta.env.VITE_APP_WEATHER
+        }&units=metric`;
+      }
+      const res = await client.get(apiAddress);
 
       return res.data;
     } catch (error) {

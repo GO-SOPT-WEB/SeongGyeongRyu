@@ -1,25 +1,39 @@
 import styled from "styled-components";
-import { DailyWeatherInfo } from "../../types/weather";
+import { WeatherInfoToRender } from "../../types/weather";
 
 export interface WeatherCardProps {
-  weatherCardInfo: DailyWeatherInfo;
+  weatherCardInfo: WeatherInfoToRender;
+  isDaily: boolean;
 }
 
 const WeatherCard = (props: WeatherCardProps) => {
+  let [month, date]: [string, string] = ["", ""];
   const {
     weatherCardInfo: {
       name,
       main: { temp, feels_like, temp_min, temp_max },
       clouds: { all },
       weatherImg,
+      dt_txt,
     },
+    isDaily,
   } = props;
-  console.log(name);
+
+  if (dt_txt) {
+    [month, date] = dt_txt.slice(5, 10).split("-");
+  }
 
   return (
     <>
       <StCardWrapper>
-        <time>{name}</time>
+        {isDaily ? (
+          <title>{name}</title>
+        ) : (
+          <time>
+            {month}/{date}
+          </time>
+        )}
+
         <img src={weatherImg} />
 
         <StWeatherInfoWrapper>
