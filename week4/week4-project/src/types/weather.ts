@@ -1,5 +1,5 @@
 export interface CommonWeatherInfo {
-  name: string; // 지역이름
+  name?: string; // 지역이름
   main: {
     temp: number; // 현재 온도
     feels_like: number; // 체감기온
@@ -20,7 +20,7 @@ export interface WeatherInfo extends CommonWeatherInfo {
   ];
 }
 
-export interface DailyWeatherInfo extends CommonWeatherInfo {
+export interface WeatherInfoToRender extends CommonWeatherInfo {
   weatherImg: string;
 }
 
