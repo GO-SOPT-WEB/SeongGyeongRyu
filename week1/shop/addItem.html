@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./addItem.css" />
+    <title>💛 새 상품 추가 💛</title>
+  </head>
+  <body>
+    <main>
+      <h1>💛 승경씨가 조아하는 음식을 추가해주세요 💛</h1>
+
+      <form class="menu__form">
+        <label for="menu__name"
+          >메뉴 이름<input id="menu__name" type="input"
+        /></label>
+
+        <label for="menu__hashtag"
+          >해시태그(,으로 구분)<input id="menu__hashtag" type="input"
+        /></label>
+
+        <label for="menu__pic"
+          >메뉴 사진<input id="menu__pic" type="file"
+        /></label>
+
+        <select id="menu__category">
+          <option value="" selected>-- 선택 --</option>
+          <option value="fruit">🍒 과일 🍒</option>
+          <option value="sweet">🍭 달달구리 🍭</option>
+          <option value="etc">😀 기타 😀</option>
+        </select>
+
+        <img class="menu__img" />
+
+        <button type="submit"><a href="./myshop.html">🔥추베릅🔥</a></button>
+      </form>
+    </main>
+  </body>
+  <script src="addItem.js"></script>
+</html>
