@@ -7,18 +7,17 @@ export interface WeatherCardProps {
 }
 
 const WeatherCard = (props: WeatherCardProps) => {
-  let [month, date]: [string, string] = ["", ""];
   const {
     weatherCardInfo: {
       name,
-      main: { temp, feels_like, temp_min, temp_max },
+      main: { feels_like, temp, temp_min, temp_max },
       clouds: { all },
       weatherImg,
       dt_txt,
     },
     isDaily,
   } = props;
-
+  let [month, date]: [string, string] = ["", ""];
   if (dt_txt) {
     [month, date] = dt_txt.slice(5, 10).split("-");
   }
@@ -27,7 +26,7 @@ const WeatherCard = (props: WeatherCardProps) => {
     <>
       <StCardWrapper>
         {isDaily ? (
-          <title>{name}</title>
+          <h2>{name}</h2>
         ) : (
           <time>
             {month}/{date}
@@ -74,7 +73,8 @@ const StCardWrapper = styled.article`
   background-color: ${({ theme }) => theme.colors.Weather_Card_Blue};
   border-radius: 4rem;
 
-  > time {
+  > time,
+  h2 {
     font-size: 2.5rem;
   }
 

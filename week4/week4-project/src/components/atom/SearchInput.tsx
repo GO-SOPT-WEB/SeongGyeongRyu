@@ -5,7 +5,7 @@ import styled from "styled-components";
 const SearchInput = () => {
   const navigate = useNavigate();
   const inputRef = useRef<HTMLInputElement>(null);
-  const [isDailyInfo, setIsDailyInfo] = useState<boolean>();
+  const [isDailyInfo, setIsDailyInfo] = useState<boolean>(true);
 
   const handleOptionChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     if (e.target.value === "daily") setIsDailyInfo(true);
@@ -15,8 +15,8 @@ const SearchInput = () => {
   const handleNavigate = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const area = inputRef.current?.value;
-    if (isDailyInfo) navigate(`/day/${area}`);
-    else navigate(`/week/${area}`);
+    const type = isDailyInfo ? "day" : "week";
+    navigate(`/${type}/${area}`);
   };
 
   return (

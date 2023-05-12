@@ -1,6 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import DailyWeather from "./components/organism/DailyWeather";
-import WeeklyWeather from "./components/organism/WeeklyWeather";
+import WeatherSection from "./components/organism/WeatherSection";
 import Error404 from "./Pages/Error404";
 import WeatherPage from "./Pages/WeatherPage";
 
@@ -10,8 +9,7 @@ const Router = () => {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<WeatherPage />}>
-            <Route path="/day/:area" element={<DailyWeather />} />
-            <Route path="/week/:area" element={<WeeklyWeather />} />
+            <Route path="/:type/:area" element={<WeatherSection />} />
           </Route>
           <Route path="*" element={<Error404 />} />
         </Routes>
