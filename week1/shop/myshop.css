@@ -42,6 +42,7 @@ body {
   font-family: "Do Hyeon", sans-serif;
 }
 
+
 .title {
   display: flex;
   justify-content: space-between;
@@ -76,12 +77,10 @@ header > img:hover + .header__sidebar,
 .header__sidebar:hover {
   display: block;
   position: absolute;
-  align-self: flex-start;
   right: 0;
 
-  width: 20vw;
+  width: 20%;
   height: 100vh;
-
   padding: 2rem;
 
   background-color: var(--color-sidebar);
@@ -268,6 +267,7 @@ nav > * {
 }
 
 .menu__hashtag {
+
   position: relative;
 }
 
@@ -276,6 +276,7 @@ nav > * {
   justify-content: center;
   flex-wrap: wrap;
   overflow: hidden;
+
 
   position: relative;
 
@@ -349,7 +350,6 @@ nav > * {
 
   cursor: pointer;
 }
-
 /* 미디어 쿼리 */
 
 @media screen and (max-width: 1279px) {

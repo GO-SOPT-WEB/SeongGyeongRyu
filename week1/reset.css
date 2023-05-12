@@ -5,6 +5,12 @@ span,
 applet,
 object,
 iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
 p,
 blockquote,
 pre,
@@ -76,7 +82,6 @@ video {
   margin: 0;
   padding: 0;
   border: 0;
-  font-family: "Do Hyeon", sans-serif;
   font-size: 62.5%;
   vertical-align: baseline;
 }
