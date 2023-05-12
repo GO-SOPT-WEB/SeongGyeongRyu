@@ -16,6 +16,7 @@ export const useGetWeatherData = (type: string, area: string) => {
       : `/forecast?q=${area}&appid=${
           import.meta.env.VITE_APP_WEATHER
         }&units=metric`;
+  console.log(type, area);
 
   //getData는 비동기 함수를 "실행하는 함수"이다.
   //따라서 내부 실행은 비동기적으로 되겠지만 만약 여기서 받아온 값을 변수에 넣어줘야한다면 getData 앞에도 await를 붙여야한다.
@@ -33,6 +34,7 @@ export const useGetWeatherData = (type: string, area: string) => {
   };
 
   useEffect(() => {
+    setIsError(false);
     setDailyInfo(undefined);
     setWeeklyInfo(undefined);
     getData(type);

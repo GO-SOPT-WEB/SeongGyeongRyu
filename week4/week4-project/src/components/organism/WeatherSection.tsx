@@ -97,7 +97,6 @@ const WeatherSection = () => {
       </StWrapper>
     );
   } else if (weeklyInfo && Array.isArray(detailWeatherInfo)) {
-    console.log(typeof detailWeatherInfo, detailWeatherInfo);
     return (
       <StWrapper>
         {detailWeatherInfo?.map((info, idx) => (
@@ -106,8 +105,6 @@ const WeatherSection = () => {
       </StWrapper>
     );
   } else {
-    console.log(detailWeatherInfo);
-
     return <Error404 />;
   }
 };

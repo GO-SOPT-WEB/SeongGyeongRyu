@@ -16,6 +16,7 @@ const SearchInput = () => {
     e.preventDefault();
     const area = inputRef.current?.value;
     const type = isDailyInfo ? "day" : "week";
+    console.log(area, type);
     navigate(`/${type}/${area}`);
   };
 
